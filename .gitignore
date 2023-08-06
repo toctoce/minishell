@@ -1,4 +1,7 @@
 *.o
 *.a
-*.minishell.c
+minishell
 ref_minishell
+.vscode
+*/.DS_Store
+.DS_Store
