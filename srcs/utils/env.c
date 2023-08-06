@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:33:13 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/06 16:52:06 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:24:25 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,29 @@ t_env	*make_env(char *env_line)
 	// = 기준으로 나눔.
 	seperator_idx = ft_index_str(env_line, '=');
 	new_env->key = ft_strndup(env_line, seperator_idx);
-	new_env->value = ft_strdup(env_line + seperator_idx + 1);
+	value = env_line + seperator_idx + 1;
+	if (ft_strcmp(new_env->key, "SHLVL") == 0)
+		new_env->value = ft_strdup(ft_itoa(ft_atoi(value) + 1));
+	else
+		new_env->value = ft_strdup(env_line + seperator_idx + 1);
 	new_env->next = NULL;
 	new_env->prev = NULL;
 	return (new_env);
 }
+
+// t_env	*get_env(char *key)
+// {
+// 	t_env	*env;
+
+// 	env = g_info.env_list;
+// 	while (env)
+// 	{
+// 		if (!ft_strcmp(env->key, key))
+// 			return (env);
+// 		env = env->next;
+// 	}
+// 	return (NULL);
+// }
 
 void	add_env(t_env **lst, char *env_line)
 {
@@ -53,7 +71,6 @@ void	init_env(char **envp)
 {
 	int		next_leve;
 	t_env	*env_list;
-	// t_env	*lvl;
 
 	env_list = NULL;
 	while (*envp)
@@ -62,21 +79,9 @@ void	init_env(char **envp)
 		envp++;
 	}
 	g_info.env_list = env_list;
-	while (env_list)
-	{
-		printf("%s = %s\n\n", env_list->key, env_list->value);
-		env_list = env_list->next;
-	}
-	// lvl = get_env("SHLVL");
-	// if (lvl)
+	// while (env_list)
 	// {
-	// 	next_leve = ft_atoi(lvl->value) + 1;
-	// 	free(lvl->value);
-	// 	lvl->value = ft_itoa(next_leve);
-	// 	if (!lvl->value)
-	// 		ft_error_exit("malloc", strerror(errno), FAIL);
+	// 	printf("%s = %s\n\n", env_list->key, env_list->value);
+	// 	env_list = env_list->next;
 	// }
-	// else
-	// 	add_env(&head, "SHLVL=1");
-	// make_env_arr();
 }
