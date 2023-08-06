@@ -22,19 +22,19 @@ endif
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(TOTAL_OBJS)
-	ar -rc $@ $^
+	@ar -rc $@ $^
 
 bonus :
-	make WITH_BONUS=1 all
+	@make WITH_BONUS=1 all
 
 clean: 
-	rm -f $(OBJS) $(OBJS_B)
+	@rm -f $(OBJS) $(OBJS_B)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:33:13 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/06 17:24:25 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/06 21:04:11 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,6 @@ t_env	*make_env(char *env_line)
 	new_env->prev = NULL;
 	return (new_env);
 }
-
-// t_env	*get_env(char *key)
-// {
-// 	t_env	*env;
-
-// 	env = g_info.env_list;
-// 	while (env)
-// 	{
-// 		if (!ft_strcmp(env->key, key))
-// 			return (env);
-// 		env = env->next;
-// 	}
-// 	return (NULL);
-// }
 
 void	add_env(t_env **lst, char *env_line)
 {
@@ -79,9 +65,4 @@ void	init_env(char **envp)
 		envp++;
 	}
 	g_info.env_list = env_list;
-	// while (env_list)
-	// {
-	// 	printf("%s = %s\n\n", env_list->key, env_list->value);
-	// 	env_list = env_list->next;
-	// }
 }

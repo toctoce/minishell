@@ -1,9 +1,14 @@
 NAME = minishell
 
 INCLUDES = ./includes
-RL_INCLUDE = -I/opt/homebrew/Cellar/readline/8.2.1/include
-INRL = -L/opt/homebrew/Cellar/readline/8.2.1/lib
-  
+## 노트북
+# RL_INCLUDE = -I/opt/homebrew/Cellar/readline/8.2.1/include
+# INRL = -L/opt/homebrew/Cellar/readline/8.2.1/lib
+
+## 클러스터
+RL_INCLUDE = -I/Users/youngkpa/.brew/opt/readline/include
+INRL = -L/Users/youngkpa/.brew/opt/readline/lib
+
 EXECUTE_SRCS = ${wildcard ./srcs/execute/*.c}
 PARSE_SRCS = ${wildcard ./srcs/parse/*.c}
 UTILS_SRCS = ${wildcard ./srcs/utils/*.c}
@@ -23,19 +28,22 @@ CFLAGS =
 all : $(NAME)
 
 %.o : %.c
-	cc $(CFLAGS) -c -o $@ $< -I $(INCLUDES) $(RL_INCLUDE)
+	@cc $(CFLAGS) -c -o $@ $< -I $(INCLUDES) $(RL_INCLUDE)
 
 $(NAME) : $(OBJS)
-	make -C $(LIBFTDIR)
-	cc $(CFLAGS) $(RL_INCLUDE) $(INRL) $(INLIBFT) -o $@ $^ -lreadline
+	@make -C $(LIBFTDIR)
+	@cc $(CFLAGS) $(RL_INCLUDE) $(INRL) $(INLIBFT) -o $@ $^ -lreadline
+	@echo "make finish"
 
 clean :
-	make -C $(LIBFTDIR) clean
-	rm -f $(OBJS)
+	@make -C $(LIBFTDIR) clean
+	@rm -f $(OBJS)
+	@echo "clean finish"
 
 fclean : clean
-	make -C $(LIBFTDIR) fclean
-	rm -f $(NAME)
+	@make -C $(LIBFTDIR) fclean
+	@rm -f $(NAME)
+	@echo "fclean finish"
 
 re : fclean all
 

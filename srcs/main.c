@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:23:52 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/06 15:38:51 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:37:39 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_info	g_info;
 int	main(int argc, char **argv, char **envp)
 {
 	// t_argv	*argvs;
-    // while( *envp)
-    //     printf( "%s\n\n\n", *envp++);
 	(void)argv;
 	if (argc != 1)
 	{
@@ -27,12 +25,12 @@ int	main(int argc, char **argv, char **envp)
 	}
 	g_info.pid = getpid();
 	init_env(envp);
-// 	while (1)
-// 	{
-// 		argvs = NULL;
-// 		unset_echoctl();
-// 		main_signal();
+	while (TRUE)
+	{
+		// argvs = NULL;
+		set_terminal();
+		set_signal();
 // 		parse(&argvs);
 // 		execute(argvs);
-// 	}
+	}
 }

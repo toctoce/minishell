@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:19:51 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/06 15:37:59 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:02:46 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <termios.h>
+# include <readline/readline.h>
 # include "../libft/libft.h"
 # include "util.h"
 
+# define FAIL 4
 // 환경변수 연결리스트
 typedef struct s_env
 {
