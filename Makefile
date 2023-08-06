@@ -17,7 +17,8 @@ LIBFTDIR = ./libft
 INLIBFT = -L./libft -lft
 
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
+CFLAGS =  
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:28:05 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/07/08 01:17:18 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:08:17 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,7 @@ int		ft_spec_di(va_list ap);
 int		ft_spec_p(va_list ap);
 int		ft_spec_x(va_list ap, char specifier);
 char	*ft_read_file(int fd);
+int		ft_index_str(char *str, char c);
+char	*ft_strndup(char *src, int len);
 
 #endif
