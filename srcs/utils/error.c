@@ -14,12 +14,12 @@
 
 void	exit_shell(char *str)
 {
-	ft_printf("%s\n", str);
-	exit(0);
+	ft_putendl_fd(str, STDOUT_FILENO);
+	exit(SUCCESS);
 }
 
 void	exit_shell_by_error(char *str)
 {
-	ft_printf("%s\n", str);
-	exit(-1);
+	ft_putendl_fd(str, STDERR_FILENO);
+	exit(ERROR);
 }
