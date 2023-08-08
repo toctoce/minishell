@@ -11,6 +11,53 @@
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+// OK
+char	*get_env_value(char *line)
+{
+	char	*key;
+	t_env	*env;
+	key = ft_substr(line, 1, get_env_key_len(line + 1));
+	if (!key)
+		exit_shell_by_error("malloc failed");
+	env = get_env(key);
+	if (env == NULL)
+		return ("");
+	free(key);
+	return (env->value);
+}
+
+// OK
+int	get_env_key_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	// ?일때는 마지막 exit status
+	// $일때는 pid
+	if (str[i] == '$' || str[i] == '?')
+		return (1);
+	// 첫 번째 글자는 숫자일 수 없음.
+	if (ft_isdigit(str[i]))
+		return (0);
+	while (ft_isalnum(str[i]) || str[i] == '_')
+		i++;
+	return (i);
+}
+
+// OK
+t_env	*get_env(char *key)
+{
+	t_env	*env_list;
+
+	env_list = g_info.env_list;
+	while (env_list)
+	{
+		if (ft_strcmp(env_list->key, key) == 0)
+			return (env_list);
+		env_list = env_list->next;
+	}
+	return (NULL);
+}
 
 t_env	*make_env(char *env_line)
 {

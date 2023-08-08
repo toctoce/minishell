@@ -8,6 +8,7 @@ INCLUDES = ./includes
 RD_INCLUDE = -I/Users/dohyunki/.brew/opt/readline/include
 # RD_LIB = -L/opt/homebrew/Cellar/readline/8.2.1/lib
 RD_LIB = -L/Users/dohyunki/.brew/opt/readline/lib
+
   
 EXECUTE_SRCS = builtin.c \
 			builtin_cd.c \

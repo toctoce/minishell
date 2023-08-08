@@ -14,9 +14,15 @@
 
 t_info	g_info;
 
+void print(char *str)
+{
+	ft_putstr_fd(str, STDOUT_FILENO);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
-	// t_argv	*argvs;
+	t_argv	*argvs; // 미니쉘에서 받는 한 라인에 관련된 변수
+
 	(void)argv;
 	if (argc != 1)
 	{
@@ -27,10 +33,10 @@ int	main(int argc, char **argv, char **envp)
 	init_env(envp);
 	while (TRUE)
 	{
-		// argvs = NULL;
+		argvs = NULL;
 		set_terminal();
 		set_signal();
-// 		parse(&argvs);
+		parse(&argvs);
 // 		execute(argvs);
 	}
 }

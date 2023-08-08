@@ -17,26 +17,13 @@
 # include <stdlib.h>
 # include <termios.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 # include "../libft/libft.h"
+# include "struct.h"
 # include "util.h"
+# include "parse.h"
 
-# define FAIL 4
-// 환경변수 연결리스트
-typedef struct s_env
-{
-	char			*key;
-	char			*value;
-	struct s_env	*prev;
-	struct s_env	*next;
-}	t_env;
-
-typedef struct s_info
-{
-	struct s_env	*env_list; //환경변수 리슽트
-	char			**env;
-	int				last_exit_num;
-	pid_t			pid; // 쉘 pid
-}	t_info;
+void print(char *str);
 
 extern t_info	g_info;
 
