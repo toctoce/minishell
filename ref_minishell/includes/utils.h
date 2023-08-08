@@ -2,7 +2,7 @@
 # define UTILS_H
 
 # include "./global.h"
-
+# include "../libs/libft/libft.h"
 # define ERR_IS_A_DIRECTORY 126
 # define ERR_CMD_NOT_FOUND 127
 # define ERR_EXIT_NAN 255
