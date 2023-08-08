@@ -2,12 +2,12 @@ NAME = minishell
 
 INCLUDES = ./includes
 ## 노트북
-# RL_INCLUDE = -I/opt/homebrew/Cellar/readline/8.2.1/include
-# INRL = -L/opt/homebrew/Cellar/readline/8.2.1/lib
+RL_INCLUDE = -I/opt/homebrew/Cellar/readline/8.2.1/include
+INRL = -L/opt/homebrew/Cellar/readline/8.2.1/lib
 
 ## 클러스터
-RL_INCLUDE = -I/Users/youngkpa/.brew/opt/readline/include
-INRL = -L/Users/youngkpa/.brew/opt/readline/lib
+# RL_INCLUDE = -I/Users/youngkpa/.brew/opt/readline/include
+# INRL = -L/Users/youngkpa/.brew/opt/readline/lib
 
 EXECUTE_SRCS = ${wildcard ./srcs/execute/*.c}
 PARSE_SRCS = ${wildcard ./srcs/parse/*.c}

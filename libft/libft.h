@@ -23,8 +23,9 @@
 # define OPEN_MAXI 256
 # define TRUE 1
 # define FALSE 0
-# define ERROR 0
-# define SUCCESS 1
+# define ERROR -1
+# define SUCCESS 0
+# define FAIL 1
 # define FT_NULL 0
 
 typedef struct s_list
@@ -38,6 +39,7 @@ void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		ft_isspace(char c);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_strlen(const char *s);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
