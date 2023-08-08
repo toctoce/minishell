@@ -1,6 +1,5 @@
 #include "../../includes/minishell.h"
 
-
 int	is_env(char *input, int *flag)
 {
 	if (*input == '\"') //큰 따옴표
@@ -54,7 +53,7 @@ void	handle_env(char **line, char *input)
 	int		size;
 	int		flag;
 
-	flag = NONE;
+	flag = 0;
 	size = get_size(input);
 	*line = malloc(sizeof(char) * (size + 1));
 	if (!(*line))
@@ -62,13 +61,13 @@ void	handle_env(char **line, char *input)
 	while (*input)
 	{
 		// 이 부분에 들어오면 abort 발생
-		// if (is_env(input, &flag)) // 환경변수이면 여기 들어와서 처리
-		// {
-		// 	value = get_env_value(input); // 환경변수 value 구함
-		// 	ft_strlcat(*line, value, ft_strlen(value) + ft_strlen(*line) + 1); // line에 value + line추가
-		// 	input += get_env_key_len(input + 1) + 1; // $USER라면, 5만큼 건너뛰는것임.
-		// 	free(value);
-		// }
+		if (is_env(input, &flag)) // 환경변수이면 여기 들어와서 처리
+		{
+			value = get_env_value(input); // 환경변수 value 구함
+			ft_strlcat(*line, value, ft_strlen(value) + ft_strlen(*line) + 1); // line에 value + line추가
+			input += get_env_key_len(input + 1) + 1; // $USER라면, 5만큼 건너뛰는것임.
+			free(value);
+		}
 		else // 환경변수가 아니면
 		{
 			ft_strlcat(*line, input, ft_strlen(*line) + 2); // line에서 공백 하나 넣고 붙이기.

@@ -22,5 +22,6 @@ void	set_signal(void);
 t_env	*get_env(char *key);
 char	*get_env_value(char *line);
 int     get_env_key_len(char *str);
+void    free_env(t_env *env);
 
 #endif
