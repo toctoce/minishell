@@ -4,12 +4,11 @@ EXECUTE_DIR = ./srcs/execute
 PARSE_DIR = ./srcs/parse
 UTILS_DIR = ./srcs/utils
 INCLUDES = ./includes
-## 노트북
-RD_INCLUDE = -I/opt/homebrew/Cellar/readline/8.2.1/include
-RD_LIB = -L/opt/homebrew/Cellar/readline/8.2.1/lib
-## 클러스터
-# RD_INCLUDE = -I/Users/youngkpa/.brew/opt/readline/include
-# RD_LIB = -L/Users/youngkpa/.brew/opt/readline/lib
+# RD_INCLUDE = -I/opt/homebrew/Cellar/readline/8.2.1/include
+RD_INCLUDE = -I/Users/dohyunki/.brew/opt/readline/include
+# RD_LIB = -L/opt/homebrew/Cellar/readline/8.2.1/lib
+RD_LIB = -L/Users/dohyunki/.brew/opt/readline/lib
+
   
 EXECUTE_SRCS = builtin.c \
 			builtin_cd.c \

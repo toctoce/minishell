@@ -28,7 +28,7 @@ static void	read_for_hdoc(int fd, char *name)
 	while (fd > 0)
 	{
 		input = readline("> ");
-		if (!input || ft_strcmp(input, &name[7]) == SUCCESS)
+		if (!input || ft_strcmp(input, &name[7]) == SUCCESS) // &name[7]???
 		{
 			free(input);
 			break ;
@@ -49,7 +49,7 @@ static void	run_hdoc(t_redir *hdoc)
 	tmp = hdoc;
 	while (tmp)
 	{
-		unlink(tmp->value);
+		unlink(tmp->value); // 왜하는거지?
 		fd = ft_open(tmp->value, HDOC);
 		read_for_hdoc(fd, tmp->value);
 		close(fd);
@@ -64,11 +64,11 @@ static int	make_hdoc(t_argv *argv)
 	t_argv	*tmp;
 
 	tmp = argv;
-	ignore_signal();
+	ignore_signal(); // 현재 프로세스가 자식 프로세스를 생성하고 종료를 기다리는 동안의 시그널 상태로 설정
 	pid = fork();
-	if (pid == 0)
+	if (pid == 0) // 성공
 	{
-		signal(SIGINT, hdoc_sigint_handler);
+		signal(SIGINT, hdoc_sigint_handler); // SIGINT 발생하면 표준출력 ""출력 후 종료
 		while (tmp)
 		{
 			run_hdoc(tmp->hdoc);
@@ -76,7 +76,7 @@ static int	make_hdoc(t_argv *argv)
 		}
 		exit (SUCCESS);
 	}
-	if (pid < 0)
+	if (pid < 0) // 실패
 		ft_error("fork", strerror(errno), FAIL);
 	wait(&status);
 	status = status >> 8;

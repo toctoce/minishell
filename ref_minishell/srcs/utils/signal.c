@@ -12,8 +12,8 @@ void	hdoc_sigint_handler(int signo)
 
 void	ignore_signal(void)
 {
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, SIG_IGN); // ctrl + c 무시
+	signal(SIGQUIT, SIG_IGN); // ctrl + \ 무시
 }
 
 void	default_signal(void)
