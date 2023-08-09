@@ -85,7 +85,10 @@ int	handle_input(t_parse *info)
 	handle_env(&info->line, info->input);
 	free(info->input); // 인풋은 할 일 끝남
 	if (all_isspace(info->line) == TRUE)
+	{
+		free(info->line);
 		return (FAIL);
+	}
 	return (SUCCESS);
 }
 
@@ -100,7 +103,6 @@ void	parse(t_argv **argvs)
 		if (handle_input(&info) == FAIL)
 			continue ;
 		print(info.line);
-		print("\n");
 		// err = create_tokens(&info.tokens, &info.dummys, info.line);
 		// if (!err)
 		// 	err = create_argvs(argvs, &info.tokens, &info.cmd, &info.type);

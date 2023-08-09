@@ -16,7 +16,7 @@ t_info	g_info;
 
 void print(char *str)
 {
-	ft_putstr_fd(str, STDOUT_FILENO);
+	ft_putendl_fd(str, STDOUT_FILENO);
 }
 
 int	main(int argc, char **argv, char **envp)
