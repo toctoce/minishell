@@ -47,7 +47,7 @@ int	get_size(char *input)
 }
 
 // $가 들어오면 abort 발생함
-void	handle_env(char **line, char *input)
+void	replace_env(char **line, char *input)
 {
 	char	*value;
 	int		size;
@@ -82,7 +82,7 @@ int	handle_input(t_parse *info)
 	if (!(info->input)) // ^D 들어올 때
 		exit_shell("exit");
 	add_history(info->input);
-	handle_env(&info->line, info->input);
+	replace_env(&info->line, info->input);
 	free(info->input); // 인풋은 할 일 끝남
 	if (all_isspace(info->line) == TRUE)
 	{
