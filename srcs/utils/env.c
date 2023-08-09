@@ -23,7 +23,13 @@ char	*get_env_value(char *line)
 		exit_shell_by_error("malloc failed");
 	env = get_env(key);
 	if (env == NULL)
+	{
+		if (ft_strlen(key) == 1 && (*key) == '?')
+			return (ft_itoa(g_info.last_exit_status));
+		if (ft_strlen(key) == 1 && (*key) == '$')
+			return (ft_itoa(g_info.pid));
 		return (ft_strdup(""));
+	}
 	value = ft_strdup(env->value);
 	free(key);
 	return (value);

@@ -2,7 +2,7 @@
 
 int	is_env(char *input, int *flag)
 {
-	if (*input == '\"') //큰 따옴표
+	if (!(*flag & S_QUOTE) && *input == '\"') //큰 따옴표
 		*flag ^= D_QUOTE;
 	if (!(*flag & D_QUOTE) && *input == '\'') // 작은 따옴표
 		*flag ^= S_QUOTE;
@@ -78,16 +78,14 @@ void	handle_env(char **line, char *input)
 
 int	handle_input(t_parse *info)
 {
+	info->input = readline("minishell > "); // 인풋을 input에다가 넣음.
 	if (!(info->input)) // ^D 들어올 때
 		exit_shell("exit");
-	if (*(info->input) == '\0') // 빈 문자열 들어올 때
-	{
-		free(info->input);
-		return (FAIL);
-	}
 	add_history(info->input);
 	handle_env(&info->line, info->input);
 	free(info->input); // 인풋은 할 일 끝남
+	if (all_isspace(info->line) == TRUE)
+		return (FAIL);
 	return (SUCCESS);
 }
 
@@ -99,14 +97,10 @@ void	parse(t_argv **argvs)
 	while (TRUE)
 	{
 		ft_memset(&info, 0, sizeof(t_parse)); // parse 초기화
-		info.input = readline("minishell > "); // 인풋을 input에다가 넣음.
 		if (handle_input(&info) == FAIL)
 			continue ;
-		// if (only_wspace(info.line))
-		// {
-		// 	free(info.line);
-		// 	continue ;
-		// }
+		print(info.line);
+		print("\n");
 		// err = create_tokens(&info.tokens, &info.dummys, info.line);
 		// if (!err)
 		// 	err = create_argvs(argvs, &info.tokens, &info.cmd, &info.type);

@@ -32,7 +32,7 @@ static void	signal_handler(int signo)
         // 개행 후에 new line이라고 알림
 		rl_on_new_line();
 		rl_redisplay();
-		// g_info.last_exit_num = FAIL; // ?
+		g_info.last_exit_status = 128 + signo; // $?를 위한 코드.
 	}
 	else if (signo == SIGQUIT)
 	{

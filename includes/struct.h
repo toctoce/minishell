@@ -1,6 +1,23 @@
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+enum e_token_type
+{
+	TOKEN_NONE,
+	TOKEN_WORD,
+	TOKEN_REDIR,
+	TOKEN_PIPE
+};
+
+enum e_exit_status_type
+{
+	EXIT_STATUS_SUCCESS = 0,
+	EXIT_STATUS_FAILURE = 1,
+	EXIT_STATUS_PERMISSION_DENIED = 126,
+	EXIT_STATUS_COMMAND_NOT_FOUND = 127
+};
+
 // 환경변수 연결리스트
 typedef struct s_env
 {
@@ -14,7 +31,7 @@ typedef struct s_info
 {
 	struct s_env	*env_list; // 환경변수 리스트
 	char			**env; // ?
-	int				last_exit_num; // ?
+	int				last_exit_status; // $?를 위한 코드
 	pid_t			pid; // 쉘 pid
 }	t_info;
 
@@ -46,16 +63,9 @@ typedef struct s_parse
 	struct s_type	*type;
 }	t_parse;
 
-enum e_token_type
-{
-	NONE,
-	WORD,
-	REDIR,
-	PIPE
-};
-
 typedef enum e_dummy_type
 {
+	NONE	= 0x0000,
 	CHAR	= 0x0001,
 	_QUOTE	= 0x0002,
 	S_QUOTE	= 0x0004,

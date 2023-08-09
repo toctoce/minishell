@@ -25,10 +25,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	if (argc != 1)
-	{
-		ft_putstr_fd("arg error\n", STDERR_FILENO);
-		exit(-1);
-	}
+		exit_shell_by_error("invalid argv");
 	g_info.pid = getpid();
 	init_env(envp);
 	while (TRUE)
