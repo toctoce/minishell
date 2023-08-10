@@ -46,7 +46,6 @@ int	get_size(char *input)
 	return (size);
 }
 
-// $가 들어오면 abort 발생함
 void	replace_env(char **line, char *input)
 {
 	char	*value;
@@ -60,7 +59,6 @@ void	replace_env(char **line, char *input)
 		exit_shell_by_error("malloc failed");
 	while (*input)
 	{
-		// 이 부분에 들어오면 abort 발생
 		if (is_env(input, &flag)) // 환경변수이면 여기 들어와서 처리
 		{
 			value = get_env_value(input); // 환경변수 value 구함
