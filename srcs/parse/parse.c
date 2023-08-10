@@ -2,11 +2,11 @@
 
 int	is_env(char *input, int *flag)
 {
-	if (!(*flag & S_QUOTE) && *input == '\"') //큰 따옴표
-		*flag ^= D_QUOTE;
-	if (!(*flag & D_QUOTE) && *input == '\'') // 작은 따옴표
-		*flag ^= S_QUOTE;
-	if (!(*flag & S_QUOTE) && *input == '$') // 달러표시가 들어왔으면?
+	if (!(*flag & DUMMY_S_QUOTE) && *input == '\"') //큰 따옴표
+		*flag ^= DUMMY_D_QUOTE;
+	if (!(*flag & DUMMY_D_QUOTE) && *input == '\'') // 작은 따옴표
+		*flag ^= DUMMY_S_QUOTE;
+	if (!(*flag & DUMMY_S_QUOTE) && *input == '$') // 달러표시가 들어왔으면?
 	{
 		if (*(input + 1) == '\'' || *(input + 1) == '\"')
 			return (FALSE);
@@ -52,7 +52,7 @@ void	replace_env(char **line, char *input)
 	int		size;
 	int		flag;
 
-	flag = 0;
+	flag = DUMMY_NONE;
 	size = get_size(input);
 	*line = malloc(sizeof(char) * (size + 1));
 	if (!(*line))
