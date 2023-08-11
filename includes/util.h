@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:58:08 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/06 22:35:52 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:54:40 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	init_env(char **env);
 void	exit_shell(char *str);
 void	exit_shell_by_error(char *str);
-void    set_terminal(void);
+void    unset_echoctl(void);
 void	set_signal(void);
 t_env	*get_env(char *key);
 char	*get_env_value(char *line);

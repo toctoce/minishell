@@ -3,18 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:15 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 18:24:23 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:40:55 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <stdio.h>
+#include "../../includes/execute.h"
 
-int	main(void)
+static int	init_execute(int *cnt, pid_t **pids, int ***pipes, t_argv *argv)
 {
-	(void)SIGINT;
-	printf("a");
+	*pids = NULL;
+	*pipes = NULL;
+	set_pipe_cnt(cnt, argv); // 파이프 개수 체크
+	*pids = (pid_t *)malloc(sizeof(pid_t) * (*cnt + 1));
+	if (!(*pids))
+		exit_shell_by_error("malloc failed");
+	if (*cnt > 0)
+	{
+		if (set_pipes(pipes, *cnt) == FAIL)
+			return (FAIL);
+	}
+	return (SUCCESS);
+}
+
+void	execute(t_argv *argv)
+{
+	int		cnt_pipe;
+	int		**pipes;
+	pid_t	pids;
+
+	// if (check_heredoc(argv) == FALSE)
+	//	return (free_argv(argv));
+	set_echoctl();
+	if (init_execute)
 }
