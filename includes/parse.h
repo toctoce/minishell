@@ -2,5 +2,6 @@
 # define PARSE_H
 
 void	parse(t_argv **argvs);
+int     input_to_line(t_parse *info);
 
 #endif

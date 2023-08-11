@@ -15,18 +15,26 @@
 char	*get_env_value(char *line)
 {
 	char	*key;
+	char	*value;
 	t_env	*env;
+
 	key = ft_substr(line, 1, get_env_key_len(line + 1));
 	if (!key)
 		exit_shell_by_error("malloc failed");
 	env = get_env(key);
 	if (env == NULL)
-		return ("");
+	{
+		if (ft_strlen(key) == 1 && (*key) == '?')
+			return (ft_itoa(g_info.last_exit_status));
+		if (ft_strlen(key) == 1 && (*key) == '$')
+			return (ft_itoa(g_info.pid));
+		return (ft_strdup(""));
+	}
+	value = ft_strdup(env->value);
 	free(key);
-	return (env->value);
+	return (value);
 }
 
-// OK
 int	get_env_key_len(char *str)
 {
 	int	i;
@@ -44,7 +52,6 @@ int	get_env_key_len(char *str)
 	return (i);
 }
 
-// OK
 t_env	*get_env(char *key)
 {
 	t_env	*env_list;

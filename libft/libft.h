@@ -23,9 +23,9 @@
 # define OPEN_MAXI 256
 # define TRUE 1
 # define FALSE 0
-# define ERROR -1
-# define SUCCESS 0
-# define FAIL 1
+# define ERROR 0
+# define SUCCESS 1
+# define FAIL 2
 # define FT_NULL 0
 
 typedef struct s_list

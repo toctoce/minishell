@@ -1,6 +1,49 @@
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef enum e_error_type
+{
+	ERROR_DUMMIES		= 0x01,
+	ERROR_TOKENS		= 0x02,
+	ERROR_ARGVS			= 0x04,
+	ERROR_SYNTAX		= 0x08,
+	ERROR_NO_OCCURED	= 0X00,
+	ERROR_OCCURED		= (ERROR_DUMMIES | ERROR_TOKENS | ERROR_ARGVS | ERROR_SYNTAX)
+}	t_error_type;
+
+enum e_token_type
+{
+	TOKEN_NONE,
+	TOKEN_WORD,
+	TOKEN_REDIR,
+	TOKEN_PIPE
+};
+
+enum e_exit_status_type
+{
+	EXIT_STATUS_SUCCESS = 0,
+	EXIT_STATUS_FAILURE = 1,
+	EXIT_STATUS_PERMISSION_DENIED = 126,
+	EXIT_STATUS_COMMAND_NOT_FOUND = 127
+};
+
+typedef enum e_dummy_type
+{
+	DUMMY_NONE	= 0x0000,
+	DUMMY_CHAR	= 0x0001,
+	DUMMY_S_QUOTE	= 0x0002,
+	DUMMY_D_QUOTE	= 0x0004,
+	DUMMY_QUOTE	= (DUMMY_S_QUOTE | DUMMY_D_QUOTE),
+	DUMMY_R_REDIR	= 0x0010,
+	DUMMY_L_REDIR	= 0x0020,
+	DUMMY_REDIR	= (DUMMY_R_REDIR | DUMMY_L_REDIR),
+	DUMMY_PIPE	= 0x0100,
+	DUMMY_SPACE	= 0x0200,
+	DUMMY_END	= 0x1000,
+	DUMMY_ADD_NULL= 0x2000
+}	t_dummy_type;
+
 // 환경변수 연결리스트
 typedef struct s_env
 {
@@ -14,7 +57,7 @@ typedef struct s_info
 {
 	struct s_env	*env_list; // 환경변수 리스트
 	char			**env; // ?
-	int				last_exit_num; // ?
+	int				last_exit_status; // $?를 위한 코드
 	pid_t			pid; // 쉘 pid
 }	t_info;
 
@@ -46,27 +89,11 @@ typedef struct s_parse
 	struct s_type	*type;
 }	t_parse;
 
-enum e_token_type
+typedef struct s_dummy_info
 {
-	NONE,
-	WORD,
-	REDIR,
-	PIPE
-};
-
-typedef enum e_dummy_type
-{
-	CHAR	= 0x0001,
-	_QUOTE	= 0x0002,
-	S_QUOTE	= 0x0004,
-	D_QUOTE	= 0x0008,
-	_REDIR	= 0x0010,
-	R_REDIR	= 0x0020,
-	L_REDIR	= 0x0040,
-	_PIPE	= 0x0100,
-	_SPACE	= 0x0200,
-	BREAK	= 0x1000,
-	ADD_NULL= 0x2000
-}	t_dummy_type;
+	int		type;
+	int		size;
+	char	*addr;
+}	t_dummy_info;
 
 #endif
