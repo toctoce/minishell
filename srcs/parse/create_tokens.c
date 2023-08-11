@@ -6,20 +6,18 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:27 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 18:24:28 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/11 22:47:36 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-#include "../../includes/parse.h"
 
 static int	get_read_size(t_dummy_info dummy, char *line)
 {
 	int	read_size;
 
 	read_size = line - dummy.addr;
-	if (dummy.type & DUMMY_QUOTE)
+	if (dummy.type & DM_QUOTE)
 		read_size = read_size + 1;
 	return (read_size);
 }
@@ -29,11 +27,11 @@ static int	get_dummy_size(t_dummy_info dummy, char *line)
 	int	size;
 
 	size = line - dummy.addr;
-	if (dummy.type & DUMMY_SPACE)
+	if (dummy.type & DM_SPACE)
 		size = 0;
-	if (dummy.type & (DUMMY_PIPE | DUMMY_REDIR))
+	if (dummy.type & (DM_PIPE | DM_REDIR))
 		size = 1;
-	else if (dummy.type & DUMMY_QUOTE && dummy.type & DUMMY_END)
+	else if (dummy.type & DM_QUOTE && dummy.type & DM_END)
 		size = size - 1;
 	return (size);
 }
@@ -41,60 +39,65 @@ static int	get_dummy_size(t_dummy_info dummy, char *line)
 static int	dummy_type(char c)
 {
 	if (c == '\'')
-		return (DUMMY_S_QUOTE);
+		return (DM_S_QUOTE);
 	else if (c == '"')
-		return (DUMMY_D_QUOTE);
+		return (DM_D_QUOTE);
 	else if (c == '<')
-		return (DUMMY_L_REDIR);
+		return (DM_L_REDIR);
 	else if (c == '>')
-		return (DUMMY_R_REDIR);
+		return (DM_R_REDIR);
 	else if (c == '|')
-		return (DUMMY_PIPE);
+		return (DM_PIPE);
 	else if (ft_isspace(c))
-		return (DUMMY_SPACE);
+		return (DM_SPACE);
 	else
-		return (DUMMY_CHAR);
+		return (DM_CHAR);
 }
 
 static int	update_dummy_type(t_dummy_info dummy, char c)
 {
-	if (dummy.type & (DUMMY_QUOTE | DUMMY_CHAR) && (c == '>' || c == '<' || c == '|'))
-		dummy.type ^= DUMMY_ADD_NULL;
-	else if (dummy.type & DUMMY_L_REDIR && (!is_wspace(c) && c != '<'))
-		dummy.type ^= DUMMY_ADD_NULL;
-	else if (dummy.type & DUMMY_R_REDIR && (!is_wspace(c) && c != '>'))
-		dummy.type ^= DUMMY_ADD_NULL;
-	else if (dummy.type & DUMMY_PIPE || dummy.type & DUMMY_SPACE)
-		dummy.type ^= DUMMY_ADD_NULL;
+	if (dummy.type & (DM_QUOTE | DM_CHAR) && (c == '>' || c == '<' || c == '|'))
+		dummy.type ^= DM_ADD_NULL;
+	else if (dummy.type & DM_L_REDIR && (!ft_isspace(c) && c != '<'))
+		dummy.type ^= DM_ADD_NULL;
+	else if (dummy.type & DM_R_REDIR && (!ft_isspace(c) && c != '>'))
+		dummy.type ^= DM_ADD_NULL;
+	else if (dummy.type & DM_PIPE || dummy.type & DM_SPACE)
+		dummy.type ^= DM_ADD_NULL;
 	return (dummy.type);
 }
 
 int	search_dummy(t_dummy_info *dummy, char **line)
 {
-	int	read_size;
+	char	*line_ptr;
 
-	dummy->type = dummy_type(**line);
-	if (dummy->type & DUMMY_QUOTE)
-		*line += 1;
-	dummy->addr = *line;
-	while (**line && !(dummy->type & DUMMY_END))
+	line_ptr = (*line);
+	dummy->type = dummy_type(*line_ptr);
+	if (dummy->type & DM_QUOTE)
+		line_ptr += 1;
+	dummy->addr = line_ptr;
+	while (*line_ptr && !(dummy->type & DM_END))
 	{
-		if (dummy->type & DUMMY_CHAR && dummy_type(**line) != DUMMY_CHAR)
-			break ; // ###### 왜 얘만 break인 것이냐
-		if (dummy->type & DUMMY_S_QUOTE && **line == '\'')
-			dummy->type ^= DUMMY_END;
-		if (dummy->type & DUMMY_D_QUOTE && **line == '"')
-			dummy->type ^= DUMMY_END;
-		if (dummy->type & (DUMMY_SPACE | DUMMY_PIPE) && !ft_isspace(*(*line + 1)))
-			dummy->type ^= DUMMY_END;
-		if (dummy->type & DUMMY_REDIR)
-			dummy->type ^= DUMMY_END;
-		(*line)++;
+		if (dummy->type & DM_CHAR && !(dummy_type(*line_ptr) & DM_CHAR))
+		{
+			dummy->type ^= DM_END;
+			break ;
+		}
+		if (dummy->type & DM_SPACE && !(dummy_type(*line_ptr) & DM_SPACE))
+			dummy->type ^= DM_END;
+		if (dummy->type & (DM_PIPE | DM_REDIR))
+			dummy->type ^= DM_END;
+		if (dummy->type & DM_S_QUOTE && dummy_type(*line_ptr) & DM_S_QUOTE)
+			dummy->type ^= DM_END;
+		if (dummy->type & DM_D_QUOTE && dummy_type(*line_ptr) & DM_D_QUOTE)
+			dummy->type ^= DM_END;
+		(line_ptr)++;
 	}
-	read_size = get_read_size(*dummy, line); // 따옴표 포함 길이
-	dummy->size = get_dummy_size(*dummy, line); // 따옴표 제외 길이
+	dummy->size = get_dummy_size(*dummy, line_ptr); // 따옴표 제외 길이
 	dummy->type = update_dummy_type(*dummy, *line); // e_dummy_type 중에 뭔지 넣어줌.
-	return (read_size);
+	free(*line);
+	*line = ft_strdup(line_ptr);
+	return (1);
 }
 
 
@@ -111,7 +114,7 @@ static int	create_dummies(t_list **dummys, char *line)
 		dummy = create_dummy(dummy_info.addr, dummy_info.size, dummy_info.type);
 // 		if (!dummy)
 // 			return (FAIL);
-// 		if (dummy_info.type & DUMMY_ADD_NULL)
+// 		if (dummy_info.type & DM_ADD_NULL)
 // 		{
 // 			dummy->next = create_dummy(NULL, 1, 0);
 // 			if (!dummy->next)

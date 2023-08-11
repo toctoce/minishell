@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:50 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 18:24:50 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:45:07 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ enum e_exit_status_type
 
 typedef enum e_dummy_type
 {
-	DUMMY_NONE	= 0x0000,
-	DUMMY_CHAR	= 0x0001,
-	DUMMY_S_QUOTE	= 0x0002,
-	DUMMY_D_QUOTE	= 0x0004,
-	DUMMY_QUOTE	= (DUMMY_S_QUOTE | DUMMY_D_QUOTE),
-	DUMMY_R_REDIR	= 0x0010,
-	DUMMY_L_REDIR	= 0x0020,
-	DUMMY_REDIR	= (DUMMY_R_REDIR | DUMMY_L_REDIR),
-	DUMMY_PIPE	= 0x0100,
-	DUMMY_SPACE	= 0x0200,
-	DUMMY_END	= 0x1000,
-	DUMMY_ADD_NULL= 0x2000
+	DM_NONE	= 0x0000,
+	DM_CHAR	= 0x0001,
+	DM_S_QUOTE	= 0x0002,
+	DM_D_QUOTE	= 0x0004,
+	DM_QUOTE	= (DM_S_QUOTE | DM_D_QUOTE),
+	DM_R_REDIR	= 0x0010,
+	DM_L_REDIR	= 0x0020,
+	DM_REDIR	= (DM_R_REDIR | DM_L_REDIR),
+	DM_PIPE	= 0x0100,
+	DM_SPACE	= 0x0200,
+	DM_END	= 0x1000,
+	DM_ADD_NULL= 0x2000
 }	t_dummy_type;
 
 // 환경변수 연결리스트
