@@ -6,13 +6,14 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:08:41 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/12 21:51:33 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/13 01:18:49 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+// void print_type(int type);
 
-static int	dummy_type(char c)
+static int	get_dummy_type(char c)
 {
 	if (c == '\'')
 		return (DM_S_QUOTE);
@@ -55,21 +56,21 @@ static t_dummy_info	*create_dummy(char **line)
 	t_dummy_info	*dummy;
 
 	dummy = malloc(sizeof(t_dummy_info));
-	dummy->type = dummy_type(**line);
+	dummy->type = get_dummy_type(**line);
 	if (dummy->type & DM_QUOTE)
 		*line += 1;
 	dummy->addr = *line;
 	while (**line && !(dummy->type & DM_END))
 	{
-		if (dummy->type & DM_CHAR && !(dummy_type(*(*line + 1)) & DM_CHAR))
+		if (dummy->type & DM_CHAR && (get_dummy_type(*(*line + 1)) != DM_CHAR))
 			dummy->type ^= DM_END;
-		if (dummy->type & DM_SPACE && !(dummy_type(*(*line + 1)) & DM_SPACE))
+		if (dummy->type & DM_SPACE && (get_dummy_type(*(*line + 1)) != DM_SPACE))
 			dummy->type ^= DM_END;
 		if (dummy->type & (DM_PIPE | DM_REDIR))
 			dummy->type ^= DM_END;
-		if (dummy->type & DM_S_QUOTE && dummy_type(**line) & DM_S_QUOTE)
+		if (dummy->type & DM_S_QUOTE && (get_dummy_type(**line) == DM_S_QUOTE))
 			dummy->type ^= DM_END;
-		if (dummy->type & DM_D_QUOTE && dummy_type(**line) & DM_D_QUOTE)
+		if (dummy->type & DM_D_QUOTE && (get_dummy_type(**line) == DM_D_QUOTE))
 			dummy->type ^= DM_END;
 		(*line)++;
 	}
@@ -87,7 +88,7 @@ static void	add_dummy_to_dummy_list(t_list **dummys, t_dummy_info *dummy_info)
 		exit_shell_by_error("malloc failed.");
 	dummy->type = dummy_info->type;
 	dummy->value = ft_strndup(dummy_info->addr, dummy_info->size);
-	ft_lstadd_back(dummys, ft_lstnew(dummy_info));
+	ft_lstadd_back(dummys, ft_lstnew(dummy));
 	if (dummy_info->type & DM_ADD_NULL)
 	{
 		dummy_null = malloc(sizeof(t_dummy_info) * 1);
@@ -100,7 +101,7 @@ static void	add_dummy_to_dummy_list(t_list **dummys, t_dummy_info *dummy_info)
 }
 
 
-void	create_dummies(t_list **dummys, char *line)
+int	create_dummies(t_list **dummys, char *line)
 {
 	t_list			*dummy;
 	t_dummy_info	*dummy_info;
@@ -110,6 +111,9 @@ void	create_dummies(t_list **dummys, char *line)
 	while (*line) // 한 단어(더미)마다 수행
 	{
 		dummy_info = create_dummy(&line); // line 가지고 따옴표 있는지, 길이는 얼마나 되는지 체크
+		if ((dummy_info->type & DM_QUOTE) && !(dummy_info->type & DM_END))
+			return (FAIL);
 		add_dummy_to_dummy_list(dummys, dummy_info);
 	}
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:50 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/12 21:40:46 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/13 01:10:15 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef enum e_error_type
+enum e_error_type
 {
 	ERROR_DUMMIES		= 0x01,
 	ERROR_TOKENS		= 0x02,
@@ -22,14 +22,23 @@ typedef enum e_error_type
 	ERROR_SYNTAX		= 0x08,
 	ERROR_NO_OCCURED	= 0X00,
 	ERROR_OCCURED		= (ERROR_DUMMIES | ERROR_TOKENS | ERROR_ARGVS | ERROR_SYNTAX)
-}	t_error_type;
+};
+
+enum e_redir_type
+{
+	RD_NONE,
+	RD_T_OUT = 1,
+	RD_A_OUT,
+	RD_IN,
+	RD_HDOC
+};
 
 enum e_token_type
 {
-	TOKEN_NONE,
-	TOKEN_WORD,
-	TOKEN_REDIR,
-	TOKEN_PIPE
+	TK_NONE,
+	TK_WORD,
+	TK_REDIR,
+	TK_PIPE
 };
 
 enum e_exit_status_type
@@ -42,10 +51,10 @@ enum e_exit_status_type
 
 typedef enum e_dummy_type
 {
-	DM_NONE	= 0x0000,
-	DM_CHAR	= 0x0001,
-	DM_S_QUOTE	= 0x0002,
-	DM_D_QUOTE	= 0x0004,
+	DM_NONE	= 0x0001,
+	DM_CHAR	= 0x0002,
+	DM_S_QUOTE	= 0x0004,
+	DM_D_QUOTE	= 0x0008,
 	DM_QUOTE	= (DM_S_QUOTE | DM_D_QUOTE),
 	DM_R_REDIR	= 0x0010,
 	DM_L_REDIR	= 0x0020,
@@ -113,5 +122,11 @@ typedef struct s_dummy
 	int		type;
 	char	*value;
 }	t_dummy;
+
+typedef struct s_token
+{
+	int		type;
+	char	*value;
+}	t_token;
 
 #endif
