@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:50 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/13 01:10:15 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/13 03:55:42 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ typedef struct s_parse
 {
 	char			*line; // 인풋에 환경변수가 있으면 대치시킨 라인
 	char			*input; // 인풋
-	struct s_list	*dummys;
-	struct s_list	*tokens;
+	struct s_list	*dummys; // 더미
+	struct s_list	*tokens; // 토큰
 	struct s_cmd	*cmd;
 	struct s_type	*type;
 }	t_parse;

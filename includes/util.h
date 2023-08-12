@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:58:08 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/06 22:35:52 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/13 03:55:08 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,10 @@ char	*get_env_value(char *line);
 int     get_env_key_len(char *str);
 void    free_env(t_env *env);
 int     all_isspace(char *line);
+// void	free_lst_only(t_list **lst);
+// void	free_content(void *content);
+void	free_dummy(void *content);
+void	free_token(void *content);
+void	shell_error(char *str, int exit_status);
 
 #endif
