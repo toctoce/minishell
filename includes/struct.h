@@ -32,6 +32,14 @@ enum e_token_type
 	TOKEN_PIPE
 };
 
+typedef enum e_redir_type
+{
+	TRUNC_OUT = 1, // >
+	APPEND_OUT, // >>
+	IN,
+	HDOC
+}	t_redir_type;
+
 enum e_exit_status_type
 {
 	EXIT_STATUS_SUCCESS = 0,

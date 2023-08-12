@@ -24,5 +24,6 @@ char	*get_env_value(char *line);
 int     get_env_key_len(char *str);
 void    free_env(t_env *env);
 int     all_isspace(char *line);
+void	ft_error(char *cmd, char *msg, int err_num);
 
 #endif

@@ -51,8 +51,8 @@ int	set_pipes(int ***pipes, int cnt_pipe)
 	{
 		if (pipe((*pipes)[idx]) < 0) // pipe로 부모 자식 프로세스간 통신
 		{
-			ft_error("pipe", strerror(errno), FAIL); // 추가하기 
-			close_pipes(*pipes, idx); // pipe 함수 추가하기
+			ft_error("pipe", strerror(errno), FAIL);
+			close_pipes(*pipes, idx);
 			return (FAIL);
 		}
 		idx++;

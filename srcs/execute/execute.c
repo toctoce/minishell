@@ -28,6 +28,14 @@ static int	init_execute(int *cnt, pid_t **pids, int ***pipes, t_argv *argv)
 	return (SUCCESS);
 }
 
+static void	end_execute(pid_t *pids, int **pipes, t_argv *argv)
+{
+	free(pids);
+	free_pipes(pipes);
+	unlink_hdoc(argv);
+	free_argv(argv);
+}
+
 void	execute(t_argv *argv)
 {
 	int		cnt_pipe;
@@ -37,5 +45,12 @@ void	execute(t_argv *argv)
 	// if (check_heredoc(argv) == FALSE)
 	//	return (free_argv(argv));
 	set_echoctl();
-	if (init_execute)
+	if (init_execute(&cnt_pipe, &pids, &pipes, argv) == FAIL)
+	{
+		g_info.last_exit_status = FAIL;
+		return (end_execute(pids, pipes, argv));
+	}
+	if (cnt_pipe == 0 && is_builtin(argv->cmd) == TRUE)
+		single_process(argv);
+	else
 }
