@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:08:41 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/12 20:33:36 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/12 21:45:38 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,30 @@ static t_dummy_info	*create_dummy(char **line)
 	return (dummy);
 }
 
-static void	add_dummy_to_dummy_list(t_list **dummy_list, t_dummy_info *dummy_info)
+static void	add_dummy_to_dummy_list(t_list **dummys, t_dummy_info *dummy_info)
 {
-	t_list			*new_dummy;
-	t_dummy_info	*dummy_null;
+	t_dummy	*dummy;
+	t_dummy	*dummy_null;
 
-	new_dummy = ft_lstnew(dummy_info);
-	if (!new_dummy)
-		exit_shell_by_error("malloc error");
-	ft_lstadd_back(dummy_list, new_dummy);
+	dummy = malloc(sizeof(t_dummy) * 1);
+	if (dummy)
+		exit_shell_by_error("malloc failed.");
+	dummy->type = dummy_info->type;
+	dummy->value = ft_strndup(dummy_info->addr, dummy_info->size);
+	ft_lstadd_back(dummys, ft_lstnew(dummy_info));
 	if (dummy_info->type & DM_ADD_NULL)
 	{
-		dummy_null = malloc(sizeof(t_dummy_info));
-		dummy_null->addr = NULL;
-		dummy_null->size = 1;
+		dummy_null = malloc(sizeof(t_dummy_info) * 1);
+		if (dummy_null)
+			exit_shell_by_error("malloc failed.");
 		dummy_null->type = DM_NONE;
-		ft_lstadd_back(dummy_list, ft_lstnew(dummy_null));
+		dummy_null->value = NULL;
+		ft_lstadd_back(dummys, ft_lstnew(dummy_null));
 	}
 }
 
 
-void	create_dummies(t_list **dummy_list, char *line)
+void	create_dummies(t_list **dummys, char *line)
 {
 	t_list			*dummy;
 	t_dummy_info	*dummy_info;
@@ -107,6 +110,6 @@ void	create_dummies(t_list **dummy_list, char *line)
 	while (*line) // 한 단어(더미)마다 수행
 	{
 		dummy_info = create_dummy(&line); // line 가지고 따옴표 있는지, 길이는 얼마나 되는지 체크
-		add_dummy_to_dummy_list(dummy_list, dummy_info);
+		add_dummy_to_dummy_list(dummys, dummy_info);
 	}
 }

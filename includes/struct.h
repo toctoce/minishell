@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:50 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 21:45:07 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/12 21:40:46 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,11 @@ typedef struct s_dummy_info
 	int		size;
 	char	*addr;
 }	t_dummy_info;
+
+typedef struct s_dummy
+{
+	int		type;
+	char	*value;
+}	t_dummy;
 
 #endif
