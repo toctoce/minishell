@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:08:41 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/12 21:45:38 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/12 21:51:33 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	add_dummy_to_dummy_list(t_list **dummys, t_dummy_info *dummy_info)
 	t_dummy	*dummy_null;
 
 	dummy = malloc(sizeof(t_dummy) * 1);
-	if (dummy)
+	if (!dummy)
 		exit_shell_by_error("malloc failed.");
 	dummy->type = dummy_info->type;
 	dummy->value = ft_strndup(dummy_info->addr, dummy_info->size);
@@ -91,7 +91,7 @@ static void	add_dummy_to_dummy_list(t_list **dummys, t_dummy_info *dummy_info)
 	if (dummy_info->type & DM_ADD_NULL)
 	{
 		dummy_null = malloc(sizeof(t_dummy_info) * 1);
-		if (dummy_null)
+		if (!dummy_null)
 			exit_shell_by_error("malloc failed.");
 		dummy_null->type = DM_NONE;
 		dummy_null->value = NULL;
