@@ -18,5 +18,5 @@ int     input_to_line(t_parse *info);
 int	    line_to_tokens(t_list **tokens, t_list **dummys, char *line);
 int 	create_dummies(t_list **dummy_list, char *line);
 void	create_tokens(t_list **tokens, t_list *dummys);
-
+int 	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type);
 #endif
