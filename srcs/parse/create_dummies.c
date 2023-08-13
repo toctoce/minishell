@@ -78,7 +78,7 @@ static t_dummy_info	*create_dummy(char **line)
 	return (dummy);
 }
 
-static void	add_dummy_to_dummy_list(t_list **dummys, t_dummy_info *dummy_info)
+static void	add_dummy_to_dummies(t_list **dummys, t_dummy_info *dummy_info)
 {
 	t_dummy	*dummy;
 	t_dummy	*dummy_null;
@@ -113,7 +113,7 @@ int	create_dummies(t_list **dummys, char *line)
 		dummy_info = create_dummy(&line); // line 가지고 따옴표 있는지, 길이는 얼마나 되는지 체크
 		if ((dummy_info->type & DM_QUOTE) && !(dummy_info->type & DM_END))
 			return (FAIL);
-		add_dummy_to_dummy_list(dummys, dummy_info);
+		add_dummy_to_dummies(dummys, dummy_info);
 	}
 	return (SUCCESS);
 }

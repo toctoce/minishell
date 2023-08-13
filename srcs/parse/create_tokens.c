@@ -46,7 +46,7 @@ static char	*get_token_value(t_list **dummies)
 	return (value);
 }
 
-static t_list	*create_add_dummies_to_tokens(t_list **tokens, t_list **dummies)
+static t_list	*add_dummies_to_tokens(t_list **tokens, t_list **dummies)
 {
 	t_token	*token;
 
@@ -65,6 +65,6 @@ void	create_tokens(t_list **tokens, t_list *dummys)
 
 	while (dummys)
 	{
-		token = create_add_dummies_to_tokens(tokens, &dummys); // 토큰으로 담아버리기~
+		token = add_dummies_to_tokens(tokens, &dummys); // 토큰으로 담아버리기~
 	}
 }
