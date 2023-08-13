@@ -28,25 +28,19 @@
 // 	*lst = NULL;
 // }
 
-// void	free_content(void *content)
-// {
-// 	free(content);
-// }
-
-void	free_dummy(void *content)
+void	free_content(void *content)
 {
-	t_dummy	*dummy;
+	free(content);
+}
 
-	dummy = (t_dummy *)content;
+void	free_dummy(t_dummy *dummy)
+{
     free(dummy->value);
 	free(dummy);
 }
 
-void	free_token(void *content)
+void	free_token(t_token *token)
 {
-	t_token	*token;
-
-	token = (t_token *)content;
     free(token->value);
 	free(token);
 }

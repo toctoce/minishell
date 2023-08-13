@@ -29,3 +29,9 @@ void	exit_shell_by_error(char *str)
 	ft_putendl_fd(str, STDERR_FILENO);
 	exit(-1);
 }
+
+void	check_malloc_error(void *target)
+{
+	if (!target)
+		exit_shell_by_error("malloc failed");
+}

@@ -12,11 +12,12 @@
 
 #include "../../includes/minishell.h"
 
-static int	error_handler(t_parse info, int error)
+static int	check_token_error(t_parse info, int error)
 {
 	free(info.line);
 	ft_lstclear(&info.dummys, free_dummy);
-	ft_lstclear(&info.tokens, free_token);
+	if (error & ERROR_OCCURED)
+		ft_lstclear(&info.tokens, free_token);
 	if (error & ERROR_SYNTAX)
 		shell_error("syntax error: unexpected tokens", EXIT_STATUS_FAILURE);
 	// if (error & ERROR_NO_OCCURED)
@@ -48,12 +49,8 @@ void	parse(t_argv **argvs)
 		if (input_to_line(&info) == FAIL)
 			continue ;
 		error = line_to_tokens(&info.tokens, &info.dummys, info.line);
-		if (error & ERROR_OCCURED)
-		{
-			error_handler(info, error);
-			break ;
-		}
-		// error = create_argvs(argvs, &info.tokens, &info.cmd, &info.type);
+		check_token_error(info, error);
+		// error = create_argvs(argvs, info.tokens, &info.cmd, &info.type);
 		// if (error & ERROR_OCCURED)
 		// {
 		// 	error_handler(info, error);
