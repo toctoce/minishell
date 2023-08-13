@@ -26,11 +26,11 @@ static void	init_argvs(t_argv **argvs, t_cmd **cmd, t_type **type)
 int	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type)
 {
 	init_argvs(argvs, cmd, type);
-	// while (tokens)
-	// {
-	// 	add_argv_to_argvs(argvs, tokens->content, *cmd, *type);
-	// 	tokens = tokens->next;
-	// }
+	while (tokens)
+	{
+		add_argv_to_argvs(argvs, tokens->content, *cmd, *type);
+		tokens = tokens->next;
+	}
 	// if (put_cmd(*cmd, argvs))
 	// 	return (ERROR_ARGVS);
 	// free_lst_only(&(*cmd)->cmds);

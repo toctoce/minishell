@@ -27,7 +27,7 @@ enum e_error_type
 enum e_redir_type
 {
 	RD_NONE,
-	RD_T_OUT = 1,
+	RD_T_OUT,
 	RD_A_OUT,
 	RD_IN,
 	RD_HDOC
@@ -128,5 +128,17 @@ typedef struct s_token
 	int		type;
 	char	*value;
 }	t_token;
+
+typedef struct s_cmd
+{
+	int				cnt;
+	struct s_list	*cmds;
+}	t_cmd;
+
+typedef struct s_type
+{
+	int	last;
+	int	redir;
+}	t_type;
 
 #endif
