@@ -12,6 +12,23 @@
 
 #include "../../includes/minishell.h"
 // OK
+int	is_valid_key(char *key)
+{
+	int	i;
+
+	i = 0;
+	if (!(ft_isalpha(key[i]) || key[i] == '_'))
+		return (FALSE);
+	i++;
+	while (key[i] && key[i] != '=')
+	{
+		if (!(ft_isalnum(key[i]) || key[i] == '_'))
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
 char	*get_env_value(char *line)
 {
 	char	*key;

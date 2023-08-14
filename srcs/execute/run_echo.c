@@ -1,53 +1,54 @@
 #include "../../includes/execute.h"
 
-static void	change_flag(char ***cmd, int *flag, char **tmp, int i)
+static void	change_flag(char ***cmd, int *flag, char **tmp, int idx1)
 {
-	if (i != 0)
+	if (idx1 != 0)
 	{
 		*flag = TRUE;
-		*cmd = &tmp[i];
+		*cmd = &tmp[idx1];
 	}
 }
 
 static void	check_option(char ***cmd, int *flag) // echo -n 개행 출력 x
 {
-	int		i;
-	int		j;
+	int		idx1;
+	int		idx2;
 	char	**tmp;
 
-	i = 0;
-	j = 0;
+	idx1 = 0;
+	idx2 = 0;
 	(*cmd)++;
 	tmp = *cmd;
 	*flag = FALSE;
-	while (tmp[i] && tmp[i][j] == '-')
+	while (tmp[idx1] && tmp[idx1][idx2] == '-')
 	{
-		if (tmp[i][j] == '-' && tmp[i][j + 1] == 'n')
+		if (tmp[idx1][idx2] == '-' && tmp[idx1][idx2 + 1] == 'n')
 		{
-			j++;
-			while (tmp[i][j] == 'n')
-				j++;
+			idx2++;
+			while (tmp[idx1][idx2] == 'n')
+				idx2++;
 		}
-		if (tmp[i][j])
+		if (tmp[idx1][idx2])
 			break ;
-		i++;
-		j = 0;
+		idx1++;
+		idx2 = 0;
 	}
-	change_flag(cmd, flag, tmp, i);
+	change_flag(cmd, flag, tmp, idx1);
 }
 
-void	ft_echo(char **cmd)
+void	run_echo(char **cmd)
 {
-	int		i;
+	int		idx;
 	int		flag;
 
 	check_option(&cmd, &flag);
-	i = -1;
-	while (cmd[++i])
+	idx = 0;
+	while (cmd[idx])
 	{
-		ft_putstr_fd(cmd[i], STDOUT_FILENO);
-		if (cmd[i + 1])
+		ft_putstr_fd(cmd[idx], STDOUT_FILENO);
+		if (cmd[idx + 1])
 			ft_putchar_fd(' ', STDOUT_FILENO);
+		idx++;
 	}
 	if (flag == FALSE)
 		ft_putchar_fd('\n', STDOUT_FILENO);

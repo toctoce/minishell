@@ -21,19 +21,19 @@ int	is_builtin(char **cmd)
 void	run_builtin_process(char **cmd)
 {
 	if (ft_strcmp(cmd[0], "echo") == SUCCESS)
-		ft_echo(cmd);
+		run_echo(cmd);
 	else if (ft_strcmp(cmd[0], "cd") == SUCCESS)
-		ft_cd(cmd);
+		run_cd(cmd);
 	else if (ft_strcmp(cmd[0], "pwd") == SUCCESS)
-		ft_pwd(cmd);
+		run_pwd(cmd);
 	else if (ft_strcmp(cmd[0], "export") == SUCCESS)
-		ft_export(cmd);
+		run_export(cmd);
 	else if (ft_strcmp(cmd[0], "unset") == SUCCESS)
-		ft_unset(cmd);
+		run_unset(cmd);
 	else if (ft_strcmp(cmd[0], "env") == SUCCESS)
-		ft_env(cmd);
+		run_env(cmd);
 	else if (ft_strcmp(cmd[0], "exit") == SUCCESS)
-		ft_exit(cmd);
+		run_exit(cmd);
 	if (g_info.pid != getpid()) // 흠 pid가 다르면 종료?? 
 		exit (SUCCESS);
 	else

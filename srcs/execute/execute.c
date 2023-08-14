@@ -53,4 +53,6 @@ void	execute(t_argv *argv)
 	if (cnt_pipe == 0 && is_builtin(argv->cmd) == TRUE)
 		single_process(argv);
 	else
+		// multi_process(argv);
+	end_execute(pids, pipes, argv);
 }
