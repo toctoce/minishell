@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:32 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 18:24:41 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:44:06 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static int	is_env(char *input, int *flag)
 {
-	if (!(*flag & DUMMY_S_QUOTE) && *input == '\"') //큰 따옴표
-		*flag ^= DUMMY_D_QUOTE;
-	if (!(*flag & DUMMY_D_QUOTE) && *input == '\'') // 작은 따옴표
-		*flag ^= DUMMY_S_QUOTE;
-	if (!(*flag & DUMMY_S_QUOTE) && *input == '$') // 달러표시가 들어왔으면?
+	if (!(*flag & DM_S_QUOTE) && *input == '\"') //큰 따옴표
+		*flag ^= DM_D_QUOTE;
+	if (!(*flag & DM_D_QUOTE) && *input == '\'') // 작은 따옴표
+		*flag ^= DM_S_QUOTE;
+	if (!(*flag & DM_S_QUOTE) && *input == '$') // 달러표시가 들어왔으면?
 	{
 		if (*(input + 1) == '\'' || *(input + 1) == '\"')
 			return (FALSE);
@@ -64,7 +64,7 @@ static void	replace_env(char **line, char *input)
 	int		size;
 	int		flag;
 
-	flag = DUMMY_NONE;
+	flag = DM_NONE;
 	size = get_size(input);
 	*line = malloc(sizeof(char) * (size + 1));
 	if (!(*line))
