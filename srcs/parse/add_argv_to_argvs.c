@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_argv_to_argvs.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/15 16:49:34 by youngkpa          #+#    #+#             */
+/*   Updated: 2023/08/15 16:49:48 by youngkpa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 static void	add_word(t_argv **argvs, t_cmd *cmd, char *value, t_type *type)
@@ -46,7 +58,7 @@ void	add_cmd_to_argvs(t_cmd *cmd, t_argv **argvs)
 		idx++;
 	}
 	cmds[idx] = NULL;
-	ft_lstclear(&cmd_free, free_lst);
+	ft_lstclear(&cmd_free, free_content);
 	cmd->cnt = 0;
 }
 

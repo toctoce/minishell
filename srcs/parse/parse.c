@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:34 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/13 03:58:16 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:49:10 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,28 @@ static int	check_token_error(t_parse info, int error)
 	return (error);
 }
 
+// void print_argv_type(t_argv *argv)
+// {
+// 	if (argv->in)
+// 	{
+// 		print("type : in");
+// 		ft_putstr_fd("	value : ", 1);
+// 		print(argv->in->value);
+// 	}
+// 	if (argv->out)
+// 	{
+// 		print("type : out");
+// 		ft_putstr_fd("	value : ", 1);
+// 		print(argv->out->value);
+// 	}
+// 	if (argv->hdoc)
+// 	{
+// 		print("type : hdoc");
+// 		ft_putstr_fd("	value : ", 1);
+// 		print(argv->hdoc->value);
+// 	}
+// }
+
 void	parse(t_argv **argvs)
 {
 	t_parse	info;
@@ -52,12 +74,29 @@ void	parse(t_argv **argvs)
 		if (input_to_line(&info) == FAIL)
 			continue ;
 		error = line_to_tokens(&info.tokens, &info.dummys, info.line);
-		check_token_error(info, error);
-		// error = create_argvs(argvs, info.tokens, &info.cmd, &info.type);
-		// if (error & ERROR_OCCURED)
+		if (error & ERROR_OCCURED)
+		{
+			print(ft_itoa(error));
+			check_token_error(info, error);
+			break ;
+		}
+		create_argvs(argvs, info.tokens, &info.cmd, &info.type);
+		// t_argv	*argv;
+		// char	**cmds;
+		// argv = *argvs;
+		// while (argv)
 		// {
-		// 	error_handler(info, error);
-		// 	break ;
+		// 	cmds = argv->cmd;
+		// 	print("====== argv ======");
+		// 	while (*cmds)
+		// 	{
+		// 		ft_putstr_fd("cmd는",1);
+		// 		print(*cmds);
+		// 		cmds++;
+		// 	}
+		// 	print_argv_type(argv);
+		// 	argv = argv->next;
 		// }
+		
 	}
 }

@@ -16,7 +16,7 @@ static void	init_argvs(t_argv **argvs, t_cmd **cmd, t_type **type)
 	ft_argvadd_back(argvs, argv);
 }
 
-int	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type)
+void	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type)
 {
 	init_argvs(argvs, cmd, type);
 	while (tokens)
@@ -27,5 +27,4 @@ int	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type)
 	add_cmd_to_argvs(*cmd, argvs);
 	free(*cmd);
 	free(*type);
-	return (SUCCESS);
 }
