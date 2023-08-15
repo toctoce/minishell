@@ -6,12 +6,12 @@ void	run_pwd(char **cmd)
 
 	if (cmd[1])
 	{
-		ft_error("pwd", "too many arguments", FAIL);
+		print_error("pwd", "too many arguments", FAIL);
 		return ;
 	}
 	if (!getcwd(cwd, sizeof(cwd)))
 	{
-		ft_error("pwd", strerror(errno), FAIL);
+		print_error("pwd", strerror(errno), FAIL);
 		return ;
 	}
 	printf("%s\n", cwd);

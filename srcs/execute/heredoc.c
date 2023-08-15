@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:09:39 by dohyunki          #+#    #+#             */
 /*   Updated: 2023/08/15 19:56:41 by dohyunki         ###   ########.fr       */

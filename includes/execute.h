@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:00:37 by dohyunki          #+#    #+#             */
 /*   Updated: 2023/08/15 19:57:30 by dohyunki         ###   ########.fr       */
@@ -41,5 +41,7 @@ void	    run_exit(char **cmd);
 char		*get_path(char *cmd);
 void		multi_process(t_argv *argv, pid_t *pids, int **pipes, int cnt_pipe);
 int			ft_open(char *file, int type);
+void	    unlink_hdoc(t_argv *argv);
+int	        check_heredoc(t_argv *argv);
 
 #endif

@@ -34,7 +34,10 @@ void	run_exit(char **cmd)
 	int	exit_num;
 
 	if (cmd[1] && cmd[2])
-		return (ft_error("exit", "too many arguments", FAIL));
+	{
+		print_error("exit", "too many arguments", FAIL);
+		return ;
+	}
 	if (cmd[1])
 		exit_num = ft_atouc(cmd[1]);
 	else
@@ -42,6 +45,6 @@ void	run_exit(char **cmd)
 	if (g_info.pid == getpid())
 		printf("exit\n");
 	if (exit_num < 0)
-        ft_error("exit", "numeric argument required", 255);
+        print_error("exit", "numeric argument required", 255);
 	exit(exit_num);
 }
