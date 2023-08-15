@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:15 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 15:35:20 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:14:04 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	execute(t_argv *argv)
 {
 	int		cnt_pipe;
 	int		**pipes;
-	pid_t	pids;
+	pid_t	*pids;
 
 	// if (check_heredoc(argv) == FALSE)
 	//	return (free_argv(argv));
