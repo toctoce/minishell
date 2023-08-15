@@ -7,7 +7,7 @@ void	run_env(char **cmd)
 	tmp = g_info.env_list;
 	if (cmd[1])
 	{
-		ft_error("env", "No such file or directory", FAIL);
+		print_error("env", "No such file or directory", FAIL);
 		return ;
 	}
 	while (tmp)

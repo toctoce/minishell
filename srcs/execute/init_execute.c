@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:24:34 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 18:14:20 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:48:04 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	set_pipes(int ***pipes, int cnt_pipe)
 	{
 		if (pipe((*pipes)[idx]) < 0) // pipe로 부모 자식 프로세스간 통신
 		{
-			ft_error("pipe", strerror(errno), FAIL);
+			print_error("pipe", strerror(errno), FAIL);
 			close_pipes(*pipes, idx);
 			return (FAIL);
 		}

@@ -15,14 +15,14 @@ static void	update_env_pwds(char *cwd)
 		else
 			old_pwd->value = ft_strdup(pwd->value);
 		if (!old_pwd->value)
-			ft_error_exit("malloc", strerror(errno), FAIL);
+			print_error_exit("malloc", strerror(errno), FAIL);
 	}
 	if (pwd)
 	{
 		free(pwd->value);
 		pwd->value = ft_strdup(cwd);
 		if (!pwd->value)
-			ft_error_exit("malloc", strerror(errno), FAIL);
+			print_error_exit("malloc", strerror(errno), FAIL);
 	}
 }
 
@@ -34,17 +34,17 @@ void	run_cd(char **cmd)
 		return ;
 	if (cmd[2])
 	{
-		ft_error("cd", "too many arguments", FAIL);
+		print_error("cd", "too many arguments", FAIL);
 		return ;
 	}
 	if (chdir(cmd[1]) != SUCCESS)
 	{
-		ft_error(ft_strjoin_3("cd", ": ", cmd[1]), strerror(errno), FAIL);
+		print_error(ft_strjoin_3("cd", ": ", cmd[1]), strerror(errno), FAIL);
 		return ;
 	}
 	if (!getcwd(cwd, sizeof(cwd)))
 	{
-		ft_error("cd", strerror(errno), FAIL);
+		print_error("cd", strerror(errno), FAIL);
 		return ;
 	}
 	update_env_pwds(cwd);
