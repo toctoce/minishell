@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:51:31 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 15:57:49 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:27:04 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	print_error_exit(char *cmd, char *msg, int exit_num)
 {
 	print_error(cmd, msg, exit_num);
 	exit(exit_num);
+}
 
 void	shell_error(char *str, int exit_status)
 {
