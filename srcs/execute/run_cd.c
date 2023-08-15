@@ -1,4 +1,4 @@
-#include "../../includes/execute.h"
+#include "../../includes/minishell.h"
 
 static void	update_env_pwds(char *cwd)
 {

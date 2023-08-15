@@ -6,12 +6,13 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:48 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 16:37:28 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:08:30 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
+# include "minishell.h"
 
 void	parse(t_argv **argvs);
 int     input_to_line(t_parse *info);
@@ -21,4 +22,5 @@ void	create_tokens(t_list **tokens, t_list *dummys);
 void 	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type);
 void	add_argv_to_argvs(t_argv **argvs, t_token *token, t_cmd *cmd, t_type *type);
 void	add_cmd_to_argvs(t_cmd *cmd, t_argv **argvs);
+
 #endif

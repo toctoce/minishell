@@ -6,13 +6,14 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:50 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 15:36:06 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:08:29 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef STRUCT_H
 # define STRUCT_H
+# include "minishell.h"
 
 enum e_error_type
 {
@@ -40,14 +41,6 @@ enum e_token_type
 	TK_REDIR,
 	TK_PIPE
 };
-
-typedef enum e_redir_type
-{
-	TRUNC_OUT = 1, // >
-	APPEND_OUT, // >>
-	IN,
-	HDOC
-}	t_redir_type;
 
 enum e_exit_status_type
 {

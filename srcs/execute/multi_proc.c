@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   multi_proc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:35:43 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 15:58:42 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:14:26 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/execute.h"
+#include "../../includes/minishell.h"
 
 static void	run_execve_process(char **cmd)
 {

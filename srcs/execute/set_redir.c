@@ -1,4 +1,4 @@
-#include "../../includes/execute.h"
+#include "../../includes/minishell.h"
 
 void	reset_stdin(int fd)
 {

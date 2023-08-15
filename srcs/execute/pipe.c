@@ -1,4 +1,4 @@
-#include "../../includes/execute.h"
+#include "../../includes/minishell.h"
 
 void	set_stdin_pipe(int **pipes, int num)
 {
