@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:48 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 18:39:56 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:07:33 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	create_tokens(t_list **tokens, t_list *dummys);
 void 	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type);
 void	add_argv(t_argv **argvs, t_token *token, t_cmd *cmd, t_type *type);
 void	add_cmd_to_argvs(t_cmd *cmd, t_argv **argvs);
+void	replace_env(char **line, char *input);
 
 #endif

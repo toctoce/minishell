@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:09:39 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 19:56:41 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:08:08 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void	read_for_hdoc(int fd, char *name)
 			free(input);
 			break ;
 		}
-		if (replace_env_hdoc(&line, input))
-			print_error_exit("hdoc", "error", FAIL);
+		replace_env(&line, input);
+			// print_error_exit("hdoc", "error", FAIL);
 		ft_putendl_fd(line, fd);
 		free(line);
 		free(input);

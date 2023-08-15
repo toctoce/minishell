@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:58:08 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 20:00:55 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:22:52 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "minishell.h"
 
 void	init_env(char **env);
+t_env	*make_env(char *env_line);
+void	add_env(t_env **lst, char *env_line);
 void	exit_shell(char *str);
 void	exit_shell_by_error(char *str);
 void    unset_echoctl(void);
@@ -50,5 +52,6 @@ t_redir	*create_redir(void);
 void	hdoc_sigint_handler(int signo);
 void	reset_envp(void);
 void	ignore_signal(void);
+void	default_signal(void);
 
 #endif

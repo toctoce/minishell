@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_to_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:32 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 21:44:06 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:30:36 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	get_size(char *input)
 	return (size);
 }
 
-static void	replace_env(char **line, char *input)
+void	replace_env(char **line, char *input)
 {
 	char	*value;
 	int		size;

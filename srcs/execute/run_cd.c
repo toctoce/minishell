@@ -39,7 +39,7 @@ void	run_cd(char **cmd)
 	}
 	if (chdir(cmd[1]) != SUCCESS)
 	{
-		print_error(ft_strjoin_3("cd", ": ", cmd[1]), strerror(errno), FAIL);
+		print_error(ft_str_double_join("cd", ": ", cmd[1]), strerror(errno), FAIL);
 		return ;
 	}
 	if (!getcwd(cwd, sizeof(cwd)))

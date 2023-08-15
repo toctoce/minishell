@@ -22,7 +22,7 @@ int	set_stdin_redir(t_argv *argv)
 		return (SUCCESS);
 	while (tmp)
 	{
-		fd = ft_open(tmp->value, IN);
+		fd = ft_open(tmp->value, RD_IN);
 		if (fd < 0)
 			return (FAIL);
 		tmp = tmp->next;
@@ -44,10 +44,10 @@ int	set_stdout_redir(t_argv *argv)
 		return (SUCCESS);
 	while (tmp)
 	{
-		if (tmp->type == TRUNC_OUT)
-			fd = ft_open(tmp->value, TRUNC_OUT);
-		if (tmp->type == APPEND_OUT)
-			fd = ft_open(tmp->value, APPEND_OUT);
+		if (tmp->type == RD_T_OUT)
+			fd = ft_open(tmp->value, RD_T_OUT);
+		if (tmp->type == RD_A_OUT)
+			fd = ft_open(tmp->value, RD_A_OUT);
 		if (fd < 0)
 			return (FAIL);
 		tmp = tmp->next;

@@ -15,28 +15,29 @@ static void	print_export(void)
 	}
 }
 
-static int	is_update_env(char *cmd)
+static void	is_update_env(char *cmd)
 {
+	t_env	*env;
 	t_env	*exist;
-	char	*key;
-	char	*value;
 
-	key = make_key(cmd);
-	exist = get_env(key);
-	if (!exist)
+	env = make_env(cmd);
+	exist = get_env(env->key);
+	// 없으면
+	if (exist == NULL)
 	{
-		free(key);
-		return (FALSE);
+		free(env->key);
+		free(env->value);
+		free(env);
+		add_env(&(g_info.env_list), cmd);
 	}
-	free(key);
-	value = ft_strchr(cmd, '=');
-	if (!value)
-		return (TRUE);
-	free(exist->value);
-	exist->value = ft_strdup(++value);
-	if (!exist->value)
-		exit_shell_by_error("malloc failed");
-	return (TRUE);
+	// 있으면
+	else
+	{
+		free(exist->value);
+		exist->value = env->value;
+		free(env->key);
+		free(env);
+	}
 }
 
 void	run_export(char **cmd)
@@ -56,8 +57,8 @@ void	run_export(char **cmd)
 			free(msg);
 			g_info.last_exit_status = FAIL;
 		}
-		else if (!is_update_env(cmd[idx]))
-			add_env(&g_info.env_list, cmd[idx]);
+		else
+			is_update_env(cmd[idx]);
 		idx++;
 	}
 	reset_envp();
