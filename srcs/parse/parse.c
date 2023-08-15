@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:34 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 16:49:10 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:45:26 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,5 @@ void	parse(t_argv **argvs)
 		// 	print_argv_type(argv);
 		// 	argv = argv->next;
 		// }
-		
 	}
 }
