@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:33:13 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 19:07:04 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:12:14 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,28 @@ void	reset_envp(void)
 	while (env_lst)
 	{
 		if (env_lst->value)
-			env_arr[idx] = ft_str_double_join(env_lst->key, "=", env_lst->value);
+			env_arr[idx] = ft_str_double_join(env_lst->key, \
+												"=", env_lst->value);
 		env_lst = env_lst->next;
 		idx++;
 	}
 	env_arr[idx] = NULL;
 	g_info.envp = env_arr;
 }
-// OK
+
 int	is_valid_key(char *key)
 {
-	int	i;
+	int	idx;
 
-	i = 0;
-	if (!(ft_isalpha(key[i]) || key[i] == '_'))
+	idx = 0;
+	if (!(ft_isalpha(key[idx]) || key[idx] == '_'))
 		return (FALSE);
-	i++;
-	while (key[i] && key[i] != '=')
+	idx++;
+	while (key[idx] && key[idx] != '=')
 	{
-		if (!(ft_isalnum(key[i]) || key[i] == '_'))
+		if (!(ft_isalnum(key[idx]) || key[idx] == '_'))
 			return (FALSE);
-		i++;
+		idx++;
 	}
 	return (TRUE);
 }
