@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:58:08 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 19:36:50 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:03:07 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ int	    ft_argvsize(t_argv *argvs);
 t_argv	*ft_argvlast(t_argv *argv);
 void	ft_argvadd_back(t_argv **argvs, t_argv *new);
 t_argv	*create_argv(void);
-int	get_redir_type(char *value);
+int	    get_redir_type(char *value);
 t_redir	*create_redir(void);
 void	hdoc_sigint_handler(int signo);
+void	reset_envp(void);
+
 #endif

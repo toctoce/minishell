@@ -6,25 +6,66 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:33:13 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/06 21:04:11 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:12:14 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-// OK
+
+int	get_env_list_size(void)
+{
+	int		idx;
+	t_env	*env_lst;
+
+	idx = 0;
+	env_lst = g_info.env_list;
+	while (env_lst)
+	{
+		if (env_lst->value)
+			idx++;
+		env_lst = env_lst->next;
+	}
+	return (idx);
+}
+
+void	reset_envp(void)
+{
+	t_env	*env_lst;
+	char	**env_arr;
+	int		lst_size;
+	int		idx;
+
+	free_str_list(g_info.envp);
+	lst_size = get_env_list_size();
+	env_lst = g_info.env_list;
+	idx = 0;
+	env_arr = malloc(sizeof(char *) * (lst_size + 1));
+	check_malloc_error(env_arr);
+	while (env_lst)
+	{
+		if (env_lst->value)
+			env_arr[idx] = ft_str_double_join(env_lst->key, \
+												"=", env_lst->value);
+		env_lst = env_lst->next;
+		idx++;
+	}
+	env_arr[idx] = NULL;
+	g_info.envp = env_arr;
+}
+
 int	is_valid_key(char *key)
 {
-	int	i;
+	int	idx;
 
-	i = 0;
-	if (!(ft_isalpha(key[i]) || key[i] == '_'))
+	idx = 0;
+	if (!(ft_isalpha(key[idx]) || key[idx] == '_'))
 		return (FALSE);
-	i++;
-	while (key[i] && key[i] != '=')
+	idx++;
+	while (key[idx] && key[idx] != '=')
 	{
-		if (!(ft_isalnum(key[i]) || key[i] == '_'))
+		if (!(ft_isalnum(key[idx]) || key[idx] == '_'))
 			return (FALSE);
-		i++;
+		idx++;
 	}
 	return (TRUE);
 }

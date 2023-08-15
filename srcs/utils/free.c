@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:37 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 15:35:24 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:13:55 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_str_list(char **str_list)
 {
-	char **list_free;
+	char	**list_free;
 
 	list_free = str_list;
 	if (str_list == NULL)
@@ -52,12 +52,12 @@ void	free_content(void *content)
 
 void	free_dummy(void *dummy)
 {
-    free(((t_dummy *)dummy)->value);
+	free(((t_dummy *)dummy)->value);
 	free(dummy);
 }
 
 void	free_token(void *token)
 {
-    free(((t_token *)token)->value);
+	free(((t_token *)token)->value);
 	free(token);
 }

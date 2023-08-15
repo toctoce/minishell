@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:50:16 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/13 00:40:44 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:44:16 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static t_list	*add_dummies_to_tokens(t_list **tokens, t_list **dummies)
 	token->value = get_token_value(dummies);
 	if (token->value)
 		ft_lstadd_back(tokens, ft_lstnew(token));
-
 	return (ft_lstnew(token));
 }
 
@@ -64,7 +63,5 @@ void	create_tokens(t_list **tokens, t_list *dummys)
 	t_list	*token;
 
 	while (dummys)
-	{
 		token = add_dummies_to_tokens(tokens, &dummys); // 토큰으로 담아버리기~
-	}
 }
