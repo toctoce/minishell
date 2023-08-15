@@ -4,7 +4,7 @@ static int	is_valid_command(char *cmd)
 {
 	struct stat	info;
 
-	if (stat(cmd, &info) == SUCCESS)
+	if (stat(cmd, &info) == 0)
 	{
 		if ((info.st_mode & S_IFMT) == S_IFDIR)
 			print_error_exit(cmd, "is a directory", 126);
