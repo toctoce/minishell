@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:00:37 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 18:09:11 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:29:48 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	        is_builtin(char **cmd);
 void    	single_process(t_argv *argv);
 int	        set_stdin_redir(t_argv *argv);
 int	        set_stdout_redir(t_argv *argv);
+void		set_stdin_pipe(int **pipes, int num);
+void		set_stdout_pipe(t_argv *argv, int **pipes, int num);
 void	    reset_stdin(int fd);
 void	    reset_stdout(int fd);
 void	    run_builtin_process(char **cmd);
@@ -37,4 +39,6 @@ void	    run_unset(char **cmd);
 void	    run_env(char **cmd);
 void	    run_exit(char **cmd);
 char		*get_path(char *cmd);
+void		multi_process(t_argv *argv, pid_t *pids, int **pipes, int cnt_pipe);
+
 #endif

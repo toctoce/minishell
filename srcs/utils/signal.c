@@ -1,5 +1,12 @@
 #include "../../includes/minishell.h"
 
+void	hdoc_sigint_handler(int signo)
+{
+	(void)signo;
+	ft_putendl_fd("", STDOUT_FILENO);
+	exit(FAIL);
+}
+
 void	ignore_signal(void)
 {
 	signal(SIGINT, SIG_IGN);

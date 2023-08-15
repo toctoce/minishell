@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:15 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 18:14:15 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:36:56 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	execute(t_argv *argv)
 	int		**pipes;
 	pid_t	*pids;
 
-	// if (check_heredoc(argv) == FALSE)
-	//	return (free_argv(argv));
+	if (check_heredoc(argv) == FALSE)
+		return (free_argv(argv));
 	set_echoctl();
 	if (init_execute(&cnt_pipe, &pids, &pipes, argv) == FAIL)
 	{
