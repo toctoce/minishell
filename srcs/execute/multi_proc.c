@@ -3,14 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   multi_proc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:35:43 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 18:14:26 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:30:37 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+
+static void	set_child_exit(int status)
+{
+	if (status == 2) // sigint
+	{
+		printf("\n");
+		g_info.last_exit_status = status + 128;
+	}
+	else if (status == 3) // sigquit
+	{
+		printf("Quit: %d\n", status);
+		g_info.last_exit_status = status + 128;
+	}
+	else
+		g_info.last_exit_status = status >> 8;
+}
+
+static void	wait_childs(int cnt_pipe)
+{
+	int	idx;
+	int	status;
+
+	idx = 0;
+	status = 0;
+	while (idx < cnt_pipe + 1)
+	{
+		if (wait(&status) < 0) // 에러
+			status = 1;
+		idx++;
+	}
+	set_child_exit(status);
+}
 
 static void	run_execve_process(char **cmd)
 {
