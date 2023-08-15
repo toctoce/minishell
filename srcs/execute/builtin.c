@@ -20,24 +20,25 @@ int	is_builtin(char **cmd)
 
 void	run_builtin_process(char **cmd)
 {
-	if (ft_strcmp(cmd[0], "echo") == SUCCESS)
+	print("1");
+	if (ft_strcmp(cmd[0], "echo") == 0)
 		run_echo(cmd);
-	else if (ft_strcmp(cmd[0], "cd") == SUCCESS)
+	else if (ft_strcmp(cmd[0], "cd") == 0)
 		run_cd(cmd);
-	else if (ft_strcmp(cmd[0], "pwd") == SUCCESS)
+	else if (ft_strcmp(cmd[0], "pwd") == 0)
 		run_pwd(cmd);
-	else if (ft_strcmp(cmd[0], "export") == SUCCESS)
+	else if (ft_strcmp(cmd[0], "export") == 0)
 		run_export(cmd);
-	else if (ft_strcmp(cmd[0], "unset") == SUCCESS)
+	else if (ft_strcmp(cmd[0], "unset") == 0)
 		run_unset(cmd);
-	else if (ft_strcmp(cmd[0], "env") == SUCCESS)
+	else if (ft_strcmp(cmd[0], "env") == 0)
 		run_env(cmd);
-	else if (ft_strcmp(cmd[0], "exit") == SUCCESS)
+	else if (ft_strcmp(cmd[0], "exit") == 0)
 		run_exit(cmd);
 	if (g_info.pid != getpid()) // 흠 pid가 다르면 종료?? 
-		exit (SUCCESS);
+		exit(EXIT_STATUS_SUCCESS);
 	else
-		g_info.last_exit_status = SUCCESS; // 이 부분 잘 모르겟누
+		g_info.last_exit_status = EXIT_STATUS_SUCCESS; // 이 부분 잘 모르겟누
 }
 
 void	single_process(t_argv *argv)

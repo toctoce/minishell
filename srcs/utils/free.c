@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:37 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 19:13:55 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 21:30:33 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	free_str_list(char **str_list)
 	if (str_list == NULL)
 		return ;
 	while (*str_list)
+	{
 		free(*str_list);
+		str_list++;
+	}
 	free(list_free);
 }
 
