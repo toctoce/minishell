@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:58:08 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 16:19:44 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:10:44 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_env(char **env);
 void	exit_shell(char *str);
 void	exit_shell_by_error(char *str);
 void    unset_echoctl(void);
+void    set_echoctl(void);
 void	check_malloc_error(void *target);
 void	shell_error(char *str, int exit_status);
 void	set_signal(void);

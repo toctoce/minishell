@@ -1,4 +1,4 @@
-#include "../../includes/execute.h"
+#include "../../includes/minishell.h"
 
 static void	change_flag(char ***cmd, int *flag, char **tmp, int idx1)
 {

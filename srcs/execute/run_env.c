@@ -1,4 +1,4 @@
-#include "../../includes/execute.h"
+#include "../../includes/minishell.h"
 
 void	run_env(char **cmd)
 {

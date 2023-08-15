@@ -3,21 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:00:37 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 16:02:00 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:09:11 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-# include "../libft/libft.h"
-# include "parse.h"
-# include "util.h"
-# include <errno.h>
-# include <limits.h>
+# include "minishell.h"
 
 void	    execute(t_argv *argv);
 static int	init_execute(int *cnt, pid_t **pids, int ***pipes, t_argv *argv);
