@@ -21,7 +21,7 @@ static void	run_execve_process(char **cmd)
 	path = get_path(*cmd);
 	if (!path)
 		print_error_exit(*cmd, "command not found", 127);
-	if (execve(path, cmd, g_info.env) == -1)
+	if (execve(path, cmd, g_info.envp) == -1)
 		print_error_exit(*cmd, strerror(errno), FAIL);
 }
 

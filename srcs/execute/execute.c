@@ -40,7 +40,7 @@ void	execute(t_argv *argv)
 {
 	int		cnt_pipe;
 	int		**pipes;
-	pid_t	pids;
+	pid_t	*pids;
 
 	// if (check_heredoc(argv) == FALSE)
 	//	return (free_argv(argv));
