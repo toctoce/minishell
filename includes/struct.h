@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:50 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 18:24:50 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:36:06 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef enum e_error_type
+enum e_error_type
 {
 	ERROR_DUMMIES		= 0x01,
 	ERROR_TOKENS		= 0x02,
@@ -22,14 +22,23 @@ typedef enum e_error_type
 	ERROR_SYNTAX		= 0x08,
 	ERROR_NO_OCCURED	= 0X00,
 	ERROR_OCCURED		= (ERROR_DUMMIES | ERROR_TOKENS | ERROR_ARGVS | ERROR_SYNTAX)
-}	t_error_type;
+};
+
+enum e_redir_type
+{
+	RD_NONE,
+	RD_T_OUT,
+	RD_A_OUT,
+	RD_IN,
+	RD_HDOC
+};
 
 enum e_token_type
 {
-	TOKEN_NONE,
-	TOKEN_WORD,
-	TOKEN_REDIR,
-	TOKEN_PIPE
+	TK_NONE,
+	TK_WORD,
+	TK_REDIR,
+	TK_PIPE
 };
 
 typedef enum e_redir_type
@@ -44,24 +53,23 @@ enum e_exit_status_type
 {
 	EXIT_STATUS_SUCCESS = 0,
 	EXIT_STATUS_FAILURE = 1,
-	EXIT_STATUS_PERMISSION_DENIED = 126,
 	EXIT_STATUS_COMMAND_NOT_FOUND = 127
 };
 
 typedef enum e_dummy_type
 {
-	DUMMY_NONE	= 0x0000,
-	DUMMY_CHAR	= 0x0001,
-	DUMMY_S_QUOTE	= 0x0002,
-	DUMMY_D_QUOTE	= 0x0004,
-	DUMMY_QUOTE	= (DUMMY_S_QUOTE | DUMMY_D_QUOTE),
-	DUMMY_R_REDIR	= 0x0010,
-	DUMMY_L_REDIR	= 0x0020,
-	DUMMY_REDIR	= (DUMMY_R_REDIR | DUMMY_L_REDIR),
-	DUMMY_PIPE	= 0x0100,
-	DUMMY_SPACE	= 0x0200,
-	DUMMY_END	= 0x1000,
-	DUMMY_ADD_NULL= 0x2000
+	DM_NONE	= 0x0001,
+	DM_CHAR	= 0x0002,
+	DM_S_QUOTE	= 0x0004,
+	DM_D_QUOTE	= 0x0008,
+	DM_QUOTE	= (DM_S_QUOTE | DM_D_QUOTE),
+	DM_R_REDIR	= 0x0010,
+	DM_L_REDIR	= 0x0020,
+	DM_REDIR	= (DM_R_REDIR | DM_L_REDIR),
+	DM_PIPE	= 0x0100,
+	DM_SPACE	= 0x0200,
+	DM_END	= 0x1000,
+	DM_ADD_NULL= 0x2000
 }	t_dummy_type;
 
 // 환경변수 연결리스트
@@ -76,7 +84,7 @@ typedef struct s_env
 typedef struct s_info
 {
 	struct s_env	*env_list; // 환경변수 리스트
-	char			**env; // ?
+	char			**envp; // ?
 	int				last_exit_status; // $?를 위한 코드
 	pid_t			pid; // 쉘 pid
 }	t_info;
@@ -103,8 +111,8 @@ typedef struct s_parse
 {
 	char			*line; // 인풋에 환경변수가 있으면 대치시킨 라인
 	char			*input; // 인풋
-	struct s_list	*dummys;
-	struct s_list	*tokens;
+	struct s_list	*dummys; // 더미
+	struct s_list	*tokens; // 토큰
 	struct s_cmd	*cmd;
 	struct s_type	*type;
 }	t_parse;
@@ -115,5 +123,29 @@ typedef struct s_dummy_info
 	int		size;
 	char	*addr;
 }	t_dummy_info;
+
+typedef struct s_dummy
+{
+	int		type;
+	char	*value;
+}	t_dummy;
+
+typedef struct s_token
+{
+	int		type;
+	char	*value;
+}	t_token;
+
+typedef struct s_cmd
+{
+	int				cnt;
+	struct s_list	*cmds;
+}	t_cmd;
+
+typedef struct s_type
+{
+	int	last;
+	int	redir;
+}	t_type;
 
 #endif

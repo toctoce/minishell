@@ -24,6 +24,11 @@ void	print_error_exit(char *cmd, char *msg, int exit_num)
 {
 	print_error(cmd, msg, exit_num);
 	exit(exit_num);
+
+void	shell_error(char *str, int exit_status)
+{
+	ft_putendl_fd(str, STDERR_FILENO);
+	g_info.last_exit_status = exit_status;
 }
 
 void	exit_shell(char *str)
@@ -36,4 +41,10 @@ void	exit_shell_by_error(char *str)
 {
 	ft_putendl_fd(str, STDERR_FILENO);
 	exit(-1);
+}
+
+void	check_malloc_error(void *target)
+{
+	if (!target)
+		exit_shell_by_error("malloc failed");
 }
