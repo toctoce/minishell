@@ -12,13 +12,7 @@ static void	init_argvs(t_argv **argvs, t_cmd **cmd, t_type **type)
     check_malloc_error(*type);
 	(*type)->last = TK_NONE;
 	(*type)->redir = TK_NONE;
-	argv = (t_argv *)malloc(sizeof(t_argv));
-    check_malloc_error(argv);
-	argv->in = NULL;
-	argv->out = NULL;
-	argv->hdoc = NULL;
-	argv->next = NULL;
-	argv->cmd = NULL;
+	argv = create_argv();
 	ft_argvadd_back(argvs, argv);
 	return (SUCCESS);
 }

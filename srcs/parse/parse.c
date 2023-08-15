@@ -16,8 +16,6 @@ static int	check_token_error(t_parse info, int error)
 {
 	free(info.line);
 	ft_lstclear(&info.dummys, free_dummy);
-	if (error & ERROR_OCCURED)
-		ft_lstclear(&info.tokens, free_token);
 	if (error & ERROR_SYNTAX)
 		shell_error("syntax error: unexpected tokens", EXIT_STATUS_FAILURE);
 	// if (error & ERROR_NO_OCCURED)
@@ -35,6 +33,11 @@ static int	check_token_error(t_parse info, int error)
 	// 	if (info.type)
 	// 		free(info.type);
 	// }
+	if (error & ERROR_OCCURED)
+	{
+		ft_lstclear(&info.tokens, free_token);
+		return (TRUE);
+	}
 	return (error);
 }
 

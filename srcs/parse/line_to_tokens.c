@@ -47,7 +47,7 @@
 // 	ft_putendl_fd("", 1);
 // }
 
-static int	get_redir_type(char *value)
+int	get_redir_type(char *value)
 {
 	if (ft_strcmp(value, ">") == 0)
 		return (RD_T_OUT);

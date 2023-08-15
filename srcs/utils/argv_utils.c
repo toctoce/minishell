@@ -1,5 +1,19 @@
 #include "../../includes/minishell.h"
 
+t_argv	*create_argv(void)
+{
+	t_argv	*argv;
+
+	argv = (t_argv *)malloc(sizeof(t_argv));
+	check_malloc_error(argv);
+	argv->in = NULL;
+	argv->out = NULL;
+	argv->hdoc = NULL;
+	argv->next = NULL;
+	argv->cmd = NULL;
+	return (argv);
+}
+
 void	free_argv(t_argv *argv)
 {
 	t_argv	*tmp;
