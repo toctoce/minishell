@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:58:08 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 19:03:07 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:00:55 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int	    get_redir_type(char *value);
 t_redir	*create_redir(void);
 void	hdoc_sigint_handler(int signo);
 void	reset_envp(void);
+void	ignore_signal(void);
 
 #endif

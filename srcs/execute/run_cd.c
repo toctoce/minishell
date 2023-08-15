@@ -48,5 +48,5 @@ void	run_cd(char **cmd)
 		return ;
 	}
 	update_env_pwds(cwd);
-	make_env_arr();
+	reset_envp();
 }

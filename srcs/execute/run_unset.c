@@ -28,4 +28,5 @@ void	run_unset(char **cmd)
 			del_env_one(del);
         idx++;
 	}
+	reset_envp();
 }
