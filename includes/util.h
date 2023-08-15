@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:58:08 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 21:54:40 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:19:44 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*get_env_value(char *line);
 int     get_env_key_len(char *str);
 void    free_env(t_env *env);
 int     all_isspace(char *line);
-void	ft_error(char *cmd, char *msg, int err_num);
+void	print_error(char *cmd, char *msg, int err_num);
+void	print_error_exit(char *cmd, char *msg, int exit_num);
+char	*ft_str_double_join(char *str1, char *str2, char *str3);
 
 #endif

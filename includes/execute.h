@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:00:37 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/11 22:45:23 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:02:00 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ int	        is_valid_key(char *key);
 void	    run_unset(char **cmd);
 void	    run_env(char **cmd);
 void	    run_exit(char **cmd);
-
+char		*get_path(char *cmd);
 #endif

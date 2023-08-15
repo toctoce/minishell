@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:15 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 22:40:55 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:35:20 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	execute(t_argv *argv)
 	if (cnt_pipe == 0 && is_builtin(argv->cmd) == TRUE)
 		single_process(argv);
 	else
-		// multi_process(argv);
+		multi_process(argv, pids, pipes, cnt_pipe);
 	end_execute(pids, pipes, argv);
 }
