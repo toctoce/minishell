@@ -33,6 +33,7 @@ void	run_exit(char **cmd)
 {
 	int	exit_num;
 
+	// 확인 필요
 	if (cmd[1] && cmd[2])
 	{
 		print_error("exit", "too many arguments", FAIL);
