@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:19:51 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 18:05:14 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:22:47 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/stat.h>
+# include <errno.h>
+# include <limits.h>
 # include "../libft/libft.h"
 # include "struct.h"
 # include "util.h"
