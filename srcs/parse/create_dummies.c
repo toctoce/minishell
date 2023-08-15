@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:08:41 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/13 01:18:49 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:43:56 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,14 @@ static void	set_dummy_info(t_dummy_info **dummy, char *line)
 		(*dummy)->size = line - (*dummy)->addr - 1;
 	else
 		(*dummy)->size = line - (*dummy)->addr;
-	if ((*dummy)->type & (DM_QUOTE | DM_CHAR) && (*line == '>' || *line == '<' || *line == '|'))
+	if ((*dummy)->type & (DM_QUOTE | DM_CHAR) && \
+		(*line == '>' || *line == '<' || *line == '|'))
 		(*dummy)->type ^= DM_ADD_NULL;
-	else if ((*dummy)->type & DM_L_REDIR && (!ft_isspace(*line) && *line != '<'))
+	else if ((*dummy)->type & DM_L_REDIR && \
+		(!ft_isspace(*line) && *line != '<'))
 		(*dummy)->type ^= DM_ADD_NULL;
-	else if ((*dummy)->type & DM_R_REDIR && (!ft_isspace(*line) && *line != '>'))
+	else if ((*dummy)->type & DM_R_REDIR && \
+		(!ft_isspace(*line) && *line != '>'))
 		(*dummy)->type ^= DM_ADD_NULL;
 	else if ((*dummy)->type & DM_PIPE || (*dummy)->type & DM_SPACE)
 		(*dummy)->type ^= DM_ADD_NULL;
@@ -62,15 +65,15 @@ static t_dummy_info	*create_dummy(char **line)
 	dummy->addr = *line;
 	while (**line && !(dummy->type & DM_END))
 	{
-		if (dummy->type & DM_CHAR && (get_dummy_type(*(*line + 1)) != DM_CHAR))
+		if (dummy->type & DM_CHAR && get_dummy_type(*(*line + 1)) != DM_CHAR)
 			dummy->type ^= DM_END;
-		if (dummy->type & DM_SPACE && (get_dummy_type(*(*line + 1)) != DM_SPACE))
+		if (dummy->type & DM_SPACE && get_dummy_type(*(*line + 1)) != DM_SPACE)
 			dummy->type ^= DM_END;
 		if (dummy->type & (DM_PIPE | DM_REDIR))
 			dummy->type ^= DM_END;
-		if (dummy->type & DM_S_QUOTE && (get_dummy_type(**line) == DM_S_QUOTE))
+		if (dummy->type & DM_S_QUOTE && get_dummy_type(**line) == DM_S_QUOTE)
 			dummy->type ^= DM_END;
-		if (dummy->type & DM_D_QUOTE && (get_dummy_type(**line) == DM_D_QUOTE))
+		if (dummy->type & DM_D_QUOTE && get_dummy_type(**line) == DM_D_QUOTE)
 			dummy->type ^= DM_END;
 		(*line)++;
 	}
@@ -99,7 +102,6 @@ static void	add_dummy_to_dummies(t_list **dummys, t_dummy_info *dummy_info)
 		ft_lstadd_back(dummys, ft_lstnew(dummy_null));
 	}
 }
-
 
 int	create_dummies(t_list **dummys, char *line)
 {

@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 16:49:34 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 16:49:48 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 18:39:56 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	add_redir(t_argv **argvs, char *value, t_type *type)
 	type->last = TK_REDIR;
 }
 
-void	add_argv_to_argvs(t_argv **argvs, t_token *token, t_cmd *cmd, t_type *type)
+void	add_argv(t_argv **argvs, t_token *token, t_cmd *cmd, t_type *type)
 {
 	t_argv	*argv_last;
 
