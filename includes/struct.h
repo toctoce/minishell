@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:50 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/13 03:55:42 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:36:06 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ enum e_exit_status_type
 {
 	EXIT_STATUS_SUCCESS = 0,
 	EXIT_STATUS_FAILURE = 1,
-	EXIT_STATUS_PERMISSION_DENIED = 126,
 	EXIT_STATUS_COMMAND_NOT_FOUND = 127
 };
 
@@ -77,7 +76,7 @@ typedef struct s_env
 typedef struct s_info
 {
 	struct s_env	*env_list; // 환경변수 리스트
-	char			**env; // ?
+	char			**envp; // ?
 	int				last_exit_status; // $?를 위한 코드
 	pid_t			pid; // 쉘 pid
 }	t_info;

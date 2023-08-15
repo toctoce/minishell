@@ -46,7 +46,7 @@ void	add_cmd_to_argvs(t_cmd *cmd, t_argv **argvs)
 		idx++;
 	}
 	cmds[idx] = NULL;
-	ft_lstclear(&cmd_free, free_content);
+	ft_lstclear(&cmd_free, free_lst);
 	cmd->cnt = 0;
 }
 
@@ -62,7 +62,7 @@ static void	add_pipe(t_argv **argvs, char *value, t_cmd *cmd, t_type *type)
 	type->last = TK_PIPE;
 }
 
-static int	add_redir(t_argv **argvs, char *value, t_type *type)
+static void	add_redir(t_argv **argvs, char *value, t_type *type)
 {
 	t_redir	*new;
 
@@ -81,7 +81,6 @@ static int	add_redir(t_argv **argvs, char *value, t_type *type)
 	}
 	free(value);
 	type->last = TK_REDIR;
-	return (SUCCESS);
 }
 
 void	add_argv_to_argvs(t_argv **argvs, t_token *token, t_cmd *cmd, t_type *type)

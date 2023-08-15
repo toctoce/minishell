@@ -8,13 +8,12 @@ static void	init_argvs(t_argv **argvs, t_cmd **cmd, t_type **type)
     check_malloc_error(*cmd);
 	(*cmd)->cnt = 0;
 	(*cmd)->cmds = NULL;
-	*type = (t_argv *)malloc(sizeof(t_argv));
+	*type = malloc(sizeof(t_type));
     check_malloc_error(*type);
 	(*type)->last = TK_NONE;
 	(*type)->redir = TK_NONE;
 	argv = create_argv();
 	ft_argvadd_back(argvs, argv);
-	return (SUCCESS);
 }
 
 int	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type)
@@ -25,10 +24,8 @@ int	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type)
 		add_argv_to_argvs(argvs, tokens->content, *cmd, *type);
 		tokens = tokens->next;
 	}
-	// if (put_cmd(*cmd, argvs))
-	// 	return (ERROR_ARGVS);
-	// free_lst_only(&(*cmd)->cmds);
-	// free(*cmd);
-	// free(*type);
+	add_cmd_to_argvs(*cmd, argvs);
+	free(*cmd);
+	free(*type);
 	return (SUCCESS);
 }
