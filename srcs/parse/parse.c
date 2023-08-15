@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:34 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 18:45:26 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:55:42 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ void	parse(t_argv **argvs)
 		{
 			print(ft_itoa(error));
 			check_token_error(info, error);
-			break ;
 		}
 		create_argvs(argvs, info.tokens, &info.cmd, &info.type);
+		if (error == ERROR_NO_OCCURED)
+			break ;
 		// t_argv	*argv;
 		// char	**cmds;
 		// argv = *argvs;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:23:52 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 21:54:40 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 20:55:16 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	main(int argc, char **argv, char **envp)
 		unset_echoctl();
 		set_signal();
 		parse(&argvs);
-// 		execute(argvs);
+		execute(argvs);
 	}
 }
