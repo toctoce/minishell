@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:09:39 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 19:40:44 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 19:56:41 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	read_for_hdoc(int fd, char *name)
 			break ;
 		}
 		if (replace_env_hdoc(&line, input))
-			ft_error_exit("hdoc", "error", FAIL);
+			print_error_exit("hdoc", "error", FAIL);
 		ft_putendl_fd(line, fd);
 		free(line);
 		free(input);
@@ -87,7 +87,7 @@ static int	make_hdoc(t_argv *argv)
 		exit (SUCCESS);
 	}
 	if (pid < 0) // 실패
-		ft_error("fork", strerror(errno), FAIL);
+		print_error("fork", strerror(errno), FAIL);
 	wait(&status);
 	status = status >> 8;
 	g_info.last_exit_status = status;

@@ -60,4 +60,5 @@ void	run_export(char **cmd)
 			add_env(&g_info.env_list, cmd[idx]);
 		idx++;
 	}
+	reset_envp();
 }
