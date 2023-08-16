@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:34 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 14:24:11 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:53:17 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static int	check_token_error(t_parse info, int error)
 	// line, dummy free
 	// syntax error - token도 free
 	// 에러 없으면 
-	free(info.line);
-	ft_lstclear(&info.dummys, free_dummy);
+	if (error & ERROR_DUMMIES)
+		return (error);
 	if (error & ERROR_SYNTAX)
 		shell_error("syntax error: unexpected tokens", EXIT_STATUS_FAILURE);
 	if (error & ERROR_OCCURED)
@@ -94,9 +94,36 @@ void	parse(t_argv **argvs)
 		if (input_to_line(&info) == FAIL)
 			continue ;
 		error = line_to_tokens(&info.tokens, &info.dummys, info.line);
-		if (check_token_error(info, error) & ERROR_OCCURED)
+		free(info.line);
+		ft_lstclear(&info.dummys, free_dummy);
+		// if (check_token_error(info, error) & ERROR_OCCURED)
+		// {
+		// 	print(ft_itoa(error));
+		// 	continue ;
+		// }
+		if (error & ERROR_OCCURED)
+		{
+			check_token_error(info, error);
+			// print(ft_itoa(error));
+			// ft_lstclear(&info.tokens, free_token);
+
 			continue ;
+    }
 		create_argvs(argvs, info.tokens, &info.cmd, &info.type);
+		// if (info.tokens->content == 0)
+		// 	print("1");
+		// else
+		// {
+		// 	// t_list *t = info.tokens->content;
+		// 	// while (t)
+		// 	// {
+
+		// 	print(((t_token *)(info.tokens->content))->value);
+		// 	printf("%p\n", info.tokens->content);
+		// 	// }
+		// }
+		// ft_lstclear(&info.tokens, free_token);
+		print_argv(*argvs);
 		if (error == ERROR_NO_OCCURED)
 			break ;
 	}

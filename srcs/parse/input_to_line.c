@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   input_to_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:32 by youngkpa          #+#    #+#             */
 /*   Updated: 2023/08/16 14:17:56 by dohyunki         ###   ########.fr       */
@@ -43,8 +43,7 @@ static int	get_size(char *input)
 		if (is_env(input, &flag))
 		{
 			env = get_env_value(input);
-			if (!env)
-				return (FALSE);
+			check_malloc_error(env);
 			size += ft_strlen(env);
 			input += get_env_key_len(input + 1) + 1;
 			free(env);
@@ -67,7 +66,7 @@ void	replace_env(char **line, char *input)
 	flag = DM_NONE;
 	size = get_size(input);
 	*line = malloc(sizeof(char) * (size + 1));
-	**line = '\0';
+	ft_memset(*line, 0, size + 1);
 	if (!(*line))
 		exit_shell_by_error("malloc failed");
 	while (*input)

@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:33:13 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 19:12:14 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:44:32 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,14 @@ char	*get_env_value(char *line)
 	if (env == NULL)
 	{
 		if (ft_strlen(key) == 1 && (*key) == '?')
-			return (ft_itoa(g_info.last_exit_status));
-		if (ft_strlen(key) == 1 && (*key) == '$')
-			return (ft_itoa(g_info.pid));
-		return (ft_strdup(""));
+			value = ft_itoa(g_info.last_exit_status);
+		else if (ft_strlen(key) == 1 && (*key) == '$')
+			value = ft_itoa(g_info.pid);
+		else
+			value = ft_strdup("");
 	}
-	value = ft_strdup(env->value);
+	else 
+		value = ft_strdup(env->value);
 	free(key);
 	return (value);
 }

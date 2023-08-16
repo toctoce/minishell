@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_argv	*argvs; // 미니쉘에서 받는 한 라인에 관련된 변수
 
-	// atexit(check);
+	atexit(check);
 	(void)argv;
 	if (argc != 1)
 		exit_shell_by_error("invalid argv");
