@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:08:41 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 18:43:56 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:50:23 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,12 @@ int	create_dummies(t_list **dummys, char *line)
 	{
 		dummy_info = create_dummy(&line); // line 가지고 따옴표 있는지, 길이는 얼마나 되는지 체크
 		if ((dummy_info->type & DM_QUOTE) && !(dummy_info->type & DM_END))
+		{
+			free(dummy_info);
 			return (FAIL);
+		}
 		add_dummy_to_dummies(dummys, dummy_info);
 	}
+	free(dummy_info);
 	return (SUCCESS);
 }
