@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/16 16:41:58 by dohyunki          #+#    #+#             */
+/*   Updated: 2023/08/16 16:46:02 by dohyunki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 void	set_stdin_pipe(int **pipes, int num)
@@ -59,7 +71,7 @@ void	close_pipes(int **pipes, int cnt)
 	{
 		close(pipes[idx][0]);
 		close(pipes[idx][1]);
-        idx++;
+		idx++;
 	}
 }
 
@@ -71,9 +83,9 @@ void	free_pipes(int **pipes)
 		return ;
 	idx = 0;
 	while (pipes[idx])
-    {
+	{
 		free(pipes[idx]);
-        idx++;
-    }
+		idx++;
+	}
 	free(pipes);
 }

@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:15 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 23:01:51 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:56:04 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	init_execute(int *cnt, pid_t **pids, int ***pipes, t_argv *argv)
 {
 	*pids = NULL;
 	*pipes = NULL;
-	set_pipe_cnt(cnt, argv); // 파이프 개수 체크
+	set_pipe_cnt(cnt, argv);
 	*pids = (pid_t *)malloc(sizeof(pid_t) * (*cnt + 1));
 	if (!(*pids))
 		exit_shell_by_error("malloc failed");

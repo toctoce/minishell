@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_echo.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/16 16:42:06 by dohyunki          #+#    #+#             */
+/*   Updated: 2023/08/16 16:46:30 by dohyunki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 static void	change_flag(char ***cmd, int *flag, char **tmp, int idx1)
@@ -9,7 +21,7 @@ static void	change_flag(char ***cmd, int *flag, char **tmp, int idx1)
 	}
 }
 
-static void	check_option(char ***cmd, int *flag) // echo -n 개행 출력 x
+static void	check_option(char ***cmd, int *flag)
 {
 	int		idx1;
 	int		idx2;

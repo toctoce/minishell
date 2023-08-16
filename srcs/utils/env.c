@@ -3,114 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:33:13 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 14:44:32 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:51:17 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	get_env_list_size(void)
-{
-	int		idx;
-	t_env	*env_lst;
-
-	idx = 0;
-	env_lst = g_info.env_list;
-	while (env_lst)
-	{
-		if (env_lst->value)
-			idx++;
-		env_lst = env_lst->next;
-	}
-	return (idx);
-}
-
-void	reset_envp(void)
-{
-	t_env	*env_lst;
-	char	**env_arr;
-	int		lst_size;
-	int		idx;
-
-	free_str_list(g_info.envp);
-	lst_size = get_env_list_size();
-	env_lst = g_info.env_list;
-	idx = 0;
-	env_arr = malloc(sizeof(char *) * (lst_size + 1));
-	check_malloc_error(env_arr);
-	while (env_lst)
-	{
-		if (env_lst->value)
-			env_arr[idx] = ft_str_double_join(env_lst->key, \
-												"=", env_lst->value);
-		env_lst = env_lst->next;
-		idx++;
-	}
-	env_arr[idx] = NULL;
-	g_info.envp = env_arr;
-}
-
-int	is_valid_key(char *key)
-{
-	int	idx;
-
-	idx = 0;
-	if (!(ft_isalpha(key[idx]) || key[idx] == '_'))
-		return (FALSE);
-	idx++;
-	while (key[idx] && key[idx] != '=')
-	{
-		if (!(ft_isalnum(key[idx]) || key[idx] == '_'))
-			return (FALSE);
-		idx++;
-	}
-	return (TRUE);
-}
-
-char	*get_env_value(char *line)
-{
-	char	*key;
-	char	*value;
-	t_env	*env;
-
-	key = ft_substr(line, 1, get_env_key_len(line + 1));
-	if (!key)
-		exit_shell_by_error("malloc failed");
-	env = get_env(key);
-	if (env == NULL)
-	{
-		if (ft_strlen(key) == 1 && (*key) == '?')
-			value = ft_itoa(g_info.last_exit_status);
-		else if (ft_strlen(key) == 1 && (*key) == '$')
-			value = ft_itoa(g_info.pid);
-		else
-			value = ft_strdup("");
-	}
-	else 
-		value = ft_strdup(env->value);
-	free(key);
-	return (value);
-}
-
-int	get_env_key_len(char *str)
-{
-	int	i;
-
-	i = 0;
-	// ?일때는 마지막 exit status
-	// $일때는 pid
-	if (str[i] == '$' || str[i] == '?')
-		return (1);
-	// 첫 번째 글자는 숫자일 수 없음.
-	if (ft_isdigit(str[i]))
-		return (0);
-	while (ft_isalnum(str[i]) || str[i] == '_')
-		i++;
-	return (i);
-}
 
 t_env	*get_env(char *key)
 {
@@ -133,7 +33,6 @@ t_env	*make_env(char *env_line)
 	char	*value;
 
 	new_env = (t_env *)malloc(sizeof(t_env));
-	// = 기준으로 나눔.
 	seperator_idx = ft_index_str(env_line, '=');
 	new_env->key = ft_strndup(env_line, seperator_idx);
 	value = env_line + seperator_idx + 1;

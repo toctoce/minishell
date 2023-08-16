@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:09:39 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 22:05:04 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:45:05 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ static void	read_for_hdoc(int fd, char *name)
 	while (fd > 0)
 	{
 		input = readline("> ");
-		if (!input || ft_strcmp(input, &name[7]) == 0) // 식별자와 같은지 확인 /tmp/ .0($NAME)
+		if (!input || ft_strcmp(input, &name[7]) == 0)
 		{
 			free(input);
 			break ;
 		}
 		replace_env(&line, input);
-			// print_error_exit("hdoc", "error", FAIL);
 		ft_putendl_fd(line, fd);
 		free(line);
 		free(input);
@@ -59,8 +58,8 @@ static void	run_hdoc(t_redir *hdoc)
 	tmp = hdoc;
 	while (tmp)
 	{
-		unlink(tmp->value); // 있으면 삭제
-		fd = ft_open(tmp->value, RD_HDOC); //없으면 만들고 WRONLY
+		unlink(tmp->value);
+		fd = ft_open(tmp->value, RD_HDOC);
 		read_for_hdoc(fd, tmp->value);
 		close(fd);
 		tmp = tmp->next;
@@ -74,11 +73,11 @@ static int	make_hdoc(t_argv *argv)
 	t_argv	*tmp;
 
 	tmp = argv;
-	ignore_signal(); // 현재 프로세스가 자식 프로세스를 생성하고 종료를 기다리는 동안의 시그널 상태로 설정
+	ignore_signal();
 	pid = fork();
-	if (pid == 0) // 성공
+	if (pid == 0)
 	{
-		signal(SIGINT, hdoc_sigint_handler); // SIGINT 발생하면 표준출력 ""출력 후 종료
+		signal(SIGINT, hdoc_sigint_handler);
 		while (tmp)
 		{
 			run_hdoc(tmp->hdoc);
@@ -86,7 +85,7 @@ static int	make_hdoc(t_argv *argv)
 		}
 		exit (SUCCESS);
 	}
-	if (pid < 0) // 실패
+	if (pid < 0)
 		print_error("fork", strerror(errno), FAIL);
 	wait(&status);
 	status = status >> 8;

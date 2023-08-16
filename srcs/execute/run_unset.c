@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_unset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/16 16:42:26 by dohyunki          #+#    #+#             */
+/*   Updated: 2023/08/16 16:47:30 by dohyunki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 static void	del_env_one(t_env *del)
@@ -26,7 +38,7 @@ void	run_unset(char **cmd)
 		del = get_env(cmd[idx]);
 		if (del)
 			del_env_one(del);
-        idx++;
+		idx++;
 	}
 	reset_envp();
 }

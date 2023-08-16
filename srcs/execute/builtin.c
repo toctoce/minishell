@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/16 16:41:25 by dohyunki          #+#    #+#             */
+/*   Updated: 2023/08/16 16:43:39 by dohyunki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 int	is_builtin(char **cmd)
@@ -13,7 +25,7 @@ int	is_builtin(char **cmd)
 	{
 		if (ft_strcmp(*cmd, builtins_cmd[idx]) == 0)
 			return (TRUE);
-        idx++;
+		idx++;
 	}
 	return (FALSE);
 }
@@ -34,10 +46,10 @@ void	run_builtin_process(char **cmd)
 		run_env(cmd);
 	else if (ft_strcmp(cmd[0], "exit") == 0)
 		run_exit(cmd);
-	if (g_info.pid != getpid()) // 흠 pid가 다르면 종료?? 
+	if (g_info.pid != getpid())
 		exit(EXIT_STATUS_SUCCESS);
 	else
-		g_info.last_exit_status = EXIT_STATUS_SUCCESS; // 이 부분 잘 모르겟누
+		g_info.last_exit_status = EXIT_STATUS_SUCCESS;
 }
 
 void	single_process(t_argv *argv)
@@ -45,8 +57,8 @@ void	single_process(t_argv *argv)
 	int	origin_stdin;
 	int	origin_stdout;
 
-	origin_stdin = dup(STDIN_FILENO); // 표준입력 디스크립터를 origin_stdin에 저장
-	origin_stdout = dup(STDOUT_FILENO); // 표준출력 디스크립터를 origin_stdout에 저장
+	origin_stdin = dup(STDIN_FILENO);
+	origin_stdout = dup(STDOUT_FILENO);
 	if (set_stdout_redir(argv) == FAIL || set_stdin_redir(argv) == FAIL)
 	{
 		reset_stdin(origin_stdin);

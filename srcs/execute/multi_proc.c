@@ -6,21 +6,20 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:35:43 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/16 15:26:23 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:42:42 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-
 static void	set_child_exit(int status)
 {
-	if (status == 2) // sigint
+	if (status == 2)
 	{
 		printf("\n");
 		g_info.last_exit_status = status + 128;
 	}
-	else if (status == 3) // sigquit
+	else if (status == 3)
 	{
 		printf("Quit: %d\n", status);
 		g_info.last_exit_status = status + 128;
@@ -38,7 +37,7 @@ static void	wait_childs(int cnt_pipe)
 	status = 0;
 	while (idx < cnt_pipe + 1)
 	{
-		if (wait(&status) < 0) // 에러
+		if (wait(&status) < 0)
 			status = 1;
 		idx++;
 	}
@@ -78,11 +77,10 @@ void	multi_process(t_argv *argv, pid_t *pids, int **pipes, int cnt_pipe)
 	idx = 0;
 	tmp = argv;
 	ignore_signal();
-	unset_echoctl();
 	while (idx < cnt_pipe + 1)
 	{
 		pids[idx] = fork();
-		if (pids[idx] == 0) // child
+		if (pids[idx] == 0)
 		{
 			default_signal();
 			run_child_process(tmp, pipes, idx);

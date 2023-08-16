@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_export.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/16 16:42:17 by dohyunki          #+#    #+#             */
+/*   Updated: 2023/08/16 16:47:14 by dohyunki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 static void	print_export(void)
@@ -22,7 +34,6 @@ static void	is_update_env(char *cmd)
 
 	env = make_env(cmd);
 	exist = get_env(env->key);
-	// 없으면
 	if (exist == NULL)
 	{
 		free(env->key);
@@ -30,7 +41,6 @@ static void	is_update_env(char *cmd)
 		free(env);
 		add_env(&(g_info.env_list), cmd);
 	}
-	// 있으면
 	else
 	{
 		free(exist->value);
