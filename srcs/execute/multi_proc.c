@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:35:43 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 21:04:38 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:26:23 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	multi_process(t_argv *argv, pid_t *pids, int **pipes, int cnt_pipe)
 	idx = 0;
 	tmp = argv;
 	ignore_signal();
+	unset_echoctl();
 	while (idx < cnt_pipe + 1)
 	{
 		pids[idx] = fork();

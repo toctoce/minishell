@@ -10,12 +10,18 @@ void	set_stdin_pipe(int **pipes, int num)
 	if (num < 0)
 	{
 		while (pipes[idx])
+		{
 			close(pipes[idx][0]);
+			idx++;
+		}
 		return ;
 	}
 	dup2(pipes[num][0], STDIN_FILENO);
-	while (pipes[++idx])
+	while (pipes[idx])
+	{
 		close(pipes[idx][0]);
+		idx++;
+	}
 }
 
 void	set_stdout_pipe(t_argv *argv, int **pipes, int num)
@@ -35,8 +41,11 @@ void	set_stdout_pipe(t_argv *argv, int **pipes, int num)
 		return ;
 	}
 	dup2(pipes[num][1], STDOUT_FILENO);
-	while (pipes[++idx])
+	while (pipes[idx])
+	{
 		close(pipes[idx][1]);
+		idx++;
+	}
 }
 
 void	close_pipes(int **pipes, int cnt)

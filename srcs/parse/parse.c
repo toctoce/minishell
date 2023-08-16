@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:34 by youngkpa          #+#    #+#             */
 /*   Updated: 2023/08/16 15:53:17 by youngkpa         ###   ########.fr       */
@@ -106,8 +106,9 @@ void	parse(t_argv **argvs)
 			check_token_error(info, error);
 			// print(ft_itoa(error));
 			// ft_lstclear(&info.tokens, free_token);
+
 			continue ;
-		}
+    }
 		create_argvs(argvs, info.tokens, &info.cmd, &info.type);
 		// if (info.tokens->content == 0)
 		// 	print("1");

@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:32 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 15:04:03 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:17:56 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	input_to_line(t_parse *info)
 	if (!(info->input)) // ^D 들어올 때
 		exit_shell("exit");
 	add_history(info->input);
+	// print(info->line);
 	replace_env(&info->line, info->input);
 	free(info->input); // 인풋은 할 일 끝남
 	if (all_isspace(info->line) == TRUE)
