@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:51:31 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 16:52:05 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:55:12 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	shell_error(char *str, int exit_status)
 void	exit_shell(char *str)
 {
 	ft_putendl_fd(str, STDOUT_FILENO);
+	free_env_list();
 	exit(0);
 }
 
