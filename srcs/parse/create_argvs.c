@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 18:30:38 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 18:40:28 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:10:38 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ static void	init_argvs(t_argv **argvs, t_cmd **cmd, t_type **type)
 	ft_argvadd_back(argvs, argv);
 }
 
+void	free_lst_only(t_list **lst)
+{
+	t_list	*to_free;
+	t_list	*seek;
+
+	seek = *lst;
+	while (seek)
+	{
+		to_free = seek;
+		seek = seek->next;
+		if (to_free)
+			free(to_free);
+	}
+	*lst = NULL;
+}
 void	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type)
 {
 	init_argvs(argvs, cmd, type);
@@ -37,6 +52,7 @@ void	create_argvs(t_argv **argvs, t_list *tokens, t_cmd **cmd, t_type **type)
 		tokens = tokens->next;
 	}
 	add_cmd_to_argvs(*cmd, argvs);
+	// free_lst_only(&(*cmd)->cmds);
 	free(*cmd);
 	free(*type);
 }
