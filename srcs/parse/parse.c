@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:34 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 21:10:06 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:24:11 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,8 @@ void	parse(t_argv **argvs)
 			continue ;
 		error = line_to_tokens(&info.tokens, &info.dummys, info.line);
 		if (check_token_error(info, error) & ERROR_OCCURED)
-		{
-			print(ft_itoa(error));
 			continue ;
-		}
 		create_argvs(argvs, info.tokens, &info.cmd, &info.type);
-		print_argv(*argvs);
 		if (error == ERROR_NO_OCCURED)
 			break ;
 	}

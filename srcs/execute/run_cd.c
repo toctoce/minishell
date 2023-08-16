@@ -37,7 +37,7 @@ void	run_cd(char **cmd)
 		print_error("cd", "too many arguments", FAIL);
 		return ;
 	}
-	if (chdir(cmd[1]) != SUCCESS)
+	if (chdir(cmd[1]) != 0)
 	{
 		print_error(ft_str_double_join("cd", ": ", cmd[1]), strerror(errno), FAIL);
 		return ;

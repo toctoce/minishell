@@ -20,7 +20,6 @@ int	is_builtin(char **cmd)
 
 void	run_builtin_process(char **cmd)
 {
-	print("1");
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		run_echo(cmd);
 	else if (ft_strcmp(cmd[0], "cd") == 0)

@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:09:39 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 20:08:08 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:05:04 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	read_for_hdoc(int fd, char *name)
 	while (fd > 0)
 	{
 		input = readline("> ");
-		if (!input || ft_strcmp(input, &name[7]) == SUCCESS) // 식별자와 같은지 확인 /tmp/ .0($NAME)
+		if (!input || ft_strcmp(input, &name[7]) == 0) // 식별자와 같은지 확인 /tmp/ .0($NAME)
 		{
 			free(input);
 			break ;
@@ -100,7 +100,7 @@ int	check_heredoc(t_argv *argv)
 	int		ishdoc;
 
 	tmp = argv;
-	ishdoc = SUCCESS;
+	ishdoc = FALSE;
 	while (tmp)
 	{
 		if (tmp->hdoc)

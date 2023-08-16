@@ -6,7 +6,7 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 21:49:11 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/11 21:57:03 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/15 22:52:45 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    set_echoctl(void)
 	struct termios	term;
 
 	tcgetattr(STDIN_FILENO, &term);
-	term.c_lflag &= ~(ECHOCTL);
+	term.c_lflag |= (ECHOCTL);
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
 
@@ -26,7 +26,6 @@ void    unset_echoctl(void)
 	struct termios	term;
 
 	tcgetattr(STDIN_FILENO, &term);
-    // 제어문자 반항 x. ^C 같은거 안나오게 해줌
 	term.c_lflag &= ~(ECHOCTL);
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
