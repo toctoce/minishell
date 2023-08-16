@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:37 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 21:30:33 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:04:47 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,6 @@ void	free_lst(void *lst)
 	free(((t_list *)lst)->content);
 	free(lst);
 }
-// void	free_lst_only(t_list **lst)
-// {
-// 	t_list	*to_free;
-// 	t_list	*seek;
-
-// 	seek = *lst;
-// 	while (seek)
-// 	{
-// 		to_free = seek;
-// 		seek = seek->next;
-// 		if (to_free)
-// 			free(to_free);
-// 	}
-// 	*lst = NULL;
-// }
 
 void	free_content(void *content)
 {

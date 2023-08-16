@@ -6,10 +6,9 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:50 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 18:08:29 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:59:58 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef STRUCT_H
 # define STRUCT_H
@@ -19,10 +18,9 @@ enum e_error_type
 {
 	ERROR_DUMMIES		= 0x01,
 	ERROR_TOKENS		= 0x02,
-	ERROR_ARGVS			= 0x04,
 	ERROR_SYNTAX		= 0x08,
 	ERROR_NO_OCCURED	= 0X00,
-	ERROR_OCCURED		= (ERROR_DUMMIES | ERROR_TOKENS | ERROR_ARGVS | ERROR_SYNTAX)
+	ERROR_OCCURED		= (ERROR_DUMMIES | ERROR_TOKENS | ERROR_SYNTAX)
 };
 
 enum e_redir_type
@@ -65,7 +63,6 @@ typedef enum e_dummy_type
 	DM_ADD_NULL= 0x2000
 }	t_dummy_type;
 
-// 환경변수 연결리스트
 typedef struct s_env
 {
 	char			*key;
@@ -76,10 +73,10 @@ typedef struct s_env
 
 typedef struct s_info
 {
-	struct s_env	*env_list; // 환경변수 리스트
-	char			**envp; // ?
-	int				last_exit_status; // $?를 위한 코드
-	pid_t			pid; // 쉘 pid
+	struct s_env	*env_list;
+	char			**envp;
+	int				last_exit_status;
+	pid_t			pid;
 }	t_info;
 
 typedef struct s_redir
@@ -91,7 +88,6 @@ typedef struct s_redir
 
 typedef struct s_argv
 {
-
 	char			**cmd;
 	struct s_redir	*in;
 	struct s_redir	*out;
@@ -99,13 +95,12 @@ typedef struct s_argv
 	struct s_argv	*next;
 }	t_argv;
 
-// 미니쉘에서 한 라인 다루는 구조체
 typedef struct s_parse
 {
-	char			*line; // 인풋에 환경변수가 있으면 대치시킨 라인
-	char			*input; // 인풋
-	struct s_list	*dummys; // 더미
-	struct s_list	*tokens; // 토큰
+	char			*line;
+	char			*input;
+	struct s_list	*dummys;
+	struct s_list	*tokens;
 	struct s_cmd	*cmd;
 	struct s_type	*type;
 }	t_parse;

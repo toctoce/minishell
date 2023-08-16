@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:19:51 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 18:22:47 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:57:13 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # include "util.h"
 # include "parse.h"
 # include "execute.h"
-
-void print(char *str);
 
 extern t_info	g_info;
 

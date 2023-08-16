@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:33:13 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 16:51:17 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:01:25 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	free_env_list(void)
+{
+	t_env	*env_list;
+	t_env	*target;
+
+	env_list = g_info.env_list;
+	if (!env_list)
+		return ;
+	while (env_list)
+	{
+		target = env_list;
+		env_list = env_list->next;
+		free(target->key);
+		free(target->value);
+		free(target);
+	}
+	g_info.env_list = 0;
+}
 
 t_env	*get_env(char *key)
 {
