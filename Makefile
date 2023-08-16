@@ -1,11 +1,6 @@
 NAME = minishell
 
 INCLUDES = ./includes
-## 노트북
-# RL_INCLUDE = -I/opt/homebrew/Cellar/readline/8.2.1/include
-# INRL = -L/opt/homebrew/Cellar/readline/8.2.1/lib
-
-## 클러스터
 RL_INCLUDE = -I/Users/${USER}/.brew/opt/readline/include
 INRL = -L/Users/${USER}/.brew/opt/readline/lib
 
@@ -22,8 +17,7 @@ LIBFTDIR = ./libft
 INLIBFT = -L./libft -lft
 
 OBJS = $(SRCS:.c=.o)
-# CFLAGS = -Wall -Wextra -Werror
-CFLAGS =  
+CFLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 

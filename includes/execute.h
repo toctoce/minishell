@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 21:00:37 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/16 18:02:05 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:07:20 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "minishell.h"
 
 void		execute(t_argv *argv);
-static int	init_execute(int *cnt, pid_t **pids, int ***pipes, t_argv *argv);
 void		set_pipe_cnt(int *cnt_pipe, t_argv *argv);
 int			set_pipes(int ***pipes, int cnt_pipe);
 void		close_pipes(int **pipes, int cnt);

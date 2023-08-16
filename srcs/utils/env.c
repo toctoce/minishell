@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:33:13 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 18:01:25 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:07:40 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	add_env(t_env **lst, char *env_line)
 
 void	init_env(char **envp)
 {
-	int		next_leve;
 	t_env	*env_list;
 
 	env_list = NULL;

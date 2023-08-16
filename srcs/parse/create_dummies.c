@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_dummies.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:08:41 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 17:41:05 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:07:30 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ static void	add_dummy_to_dummies(t_list **dummys, t_dummy_info *dummy_info)
 
 int	create_dummies(t_list **dummys, char *line)
 {
-	t_list			*dummy;
 	t_dummy_info	*dummy_info;
 
 	while (ft_isspace(*line))

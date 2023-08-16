@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:34 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 17:43:29 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 18:06:40 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	parse(t_argv **argvs)
 			continue ;
 		}
 		create_argvs(argvs, info.tokens, &info.cmd, &info.type);
-		print_argv(*argvs);
 		if (error == ERROR_NO_OCCURED)
 			break ;
 	}
