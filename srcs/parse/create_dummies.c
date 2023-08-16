@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:08:41 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 15:50:23 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:41:05 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ int	create_dummies(t_list **dummys, char *line)
 
 	while (ft_isspace(*line))
 		line++;
-	while (*line) // 한 단어(더미)마다 수행
+	while (*line)
 	{
-		dummy_info = create_dummy(&line); // line 가지고 따옴표 있는지, 길이는 얼마나 되는지 체크
+		dummy_info = create_dummy(&line);
 		if ((dummy_info->type & DM_QUOTE) && !(dummy_info->type & DM_END))
 		{
 			free(dummy_info);

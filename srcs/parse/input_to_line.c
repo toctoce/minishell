@@ -6,7 +6,7 @@
 /*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:32 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 14:17:56 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:41:47 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static int	is_env(char *input, int *flag)
 {
-	if (!(*flag & DM_S_QUOTE) && *input == '\"') //큰 따옴표
+	if (!(*flag & DM_S_QUOTE) && *input == '\"')
 		*flag ^= DM_D_QUOTE;
-	if (!(*flag & DM_D_QUOTE) && *input == '\'') // 작은 따옴표
+	if (!(*flag & DM_D_QUOTE) && *input == '\'')
 		*flag ^= DM_S_QUOTE;
-	if (!(*flag & DM_S_QUOTE) && *input == '$') // 달러표시가 들어왔으면?
+	if (!(*flag & DM_S_QUOTE) && *input == '$')
 	{
 		if (*(input + 1) == '\'' || *(input + 1) == '\"')
 			return (FALSE);
@@ -71,16 +71,16 @@ void	replace_env(char **line, char *input)
 		exit_shell_by_error("malloc failed");
 	while (*input)
 	{
-		if (is_env(input, &flag)) // 환경변수이면 여기 들어와서 처리
+		if (is_env(input, &flag))
 		{
-			value = get_env_value(input); // 환경변수 value 구함
-			ft_strlcat(*line, value, ft_strlen(value) + ft_strlen(*line) + 1); // line에 value + line추가
-			input += get_env_key_len(input + 1) + 1; // $USER라면, 5만큼 건너뛰는것임.
+			value = get_env_value(input);
+			ft_strlcat(*line, value, ft_strlen(value) + ft_strlen(*line) + 1);
+			input += get_env_key_len(input + 1) + 1;
 			free(value);
 		}
-		else // 환경변수가 아니면
+		else
 		{
-			ft_strlcat(*line, input, ft_strlen(*line) + 2); // line에서 공백 하나 넣고 붙이기.
+			ft_strlcat(*line, input, ft_strlen(*line) + 2);
 			input++;
 		}
 	}
@@ -88,13 +88,15 @@ void	replace_env(char **line, char *input)
 
 int	input_to_line(t_parse *info)
 {
-	info->input = readline("minishell > "); // 인풋을 input에다가 넣음.
-	if (!(info->input)) // ^D 들어올 때
+	info->input = readline("minishell > ");
+	if (!(info->input))
+	{
+		free(info->input);
 		exit_shell("exit");
+	}
 	add_history(info->input);
-	// print(info->line);
 	replace_env(&info->line, info->input);
-	free(info->input); // 인풋은 할 일 끝남
+	free(info->input);
 	if (all_isspace(info->line) == TRUE)
 	{
 		free(info->line);

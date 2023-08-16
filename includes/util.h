@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 14:58:08 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 20:22:52 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:49:23 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_signal(void);
 t_env	*get_env(char *key);
 char	*get_env_value(char *line);
 int     get_env_key_len(char *str);
-void    free_env(t_env *env);
+void	free_env_list(void);
 int     all_isspace(char *line);
 void	print_error(char *cmd, char *msg, int err_num);
 void	print_error_exit(char *cmd, char *msg, int exit_num);
@@ -38,6 +38,7 @@ void	free_content(void *content);
 void	free_dummy(void *dummy);
 void	free_token(void *token);
 void	free_lst(void *lst);
+void	free_env(void *env);
 void	free_redir(t_redir *redir);
 int     ft_redirsize(t_redir *redirs);
 t_redir	*ft_redirlast(t_redir *redir);

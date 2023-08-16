@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:24:34 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/16 15:53:17 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:43:29 by youngkpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 static int	check_token_error(t_parse info, int error)
 {
-
-	// line, dummy free
-	// syntax error - token도 free
-	// 에러 없으면 
 	if (error & ERROR_DUMMIES)
 		return (error);
 	if (error & ERROR_SYNTAX)
@@ -25,62 +21,6 @@ static int	check_token_error(t_parse info, int error)
 	if (error & ERROR_OCCURED)
 		ft_lstclear(&info.tokens, free_token);
 	return (error);
-	// if (error & ERROR_NO_OCCURED)
-	// {
-	// 	ft_lstclear(&info.tokens, free_content);
-	// }
-	// if (error & ERROR_ARGVS)
-	// {
-	// 	ft_lstclear(&info.tokens, free_token);
-	// 	if (info.cmd)
-	// 	{
-	// 		free_lst_only(&info.cmd->cmds);
-	// 		free(info.cmd);
-	// 	}
-	// 	if (info.type)
-	// 		free(info.type);
-	// }
-}
-
-void print_argv_type(t_argv *argv)
-{
-	if (argv->in)
-	{
-		print("type : in");
-		ft_putstr_fd("  value : ", 1);
-		print(argv->in->value);
-	}
-	if (argv->out)
-	{
-		print("type : out");
-		ft_putstr_fd("  value : ", 1);
-		print(argv->out->value);
-	}
-	if (argv->hdoc)
-	{
-		print("type : hdoc");
-		ft_putstr_fd("  value : ", 1);
-		print(argv->hdoc->value);
-	}
-}
-
-void print_argv(t_argv *argv)
-{
-	char	**cmds;
-	
-	while (argv)
-	{
-		cmds = argv->cmd;
-		print("====== argv ======");
-		while (*cmds)
-		{
-			ft_putstr_fd("cmd는",1);
-			print(*cmds);
-			cmds++;
-		}
-		print_argv_type(argv);
-		argv = argv->next;
-	}
 }
 
 void	parse(t_argv **argvs)
@@ -90,39 +30,21 @@ void	parse(t_argv **argvs)
 
 	while (TRUE)
 	{
-		ft_memset(&info, 0, sizeof(t_parse)); // parse 초기화
+		ft_memset(&info, 0, sizeof(t_parse));
 		if (input_to_line(&info) == FAIL)
+		{
+			ft_lstclear(&info.dummys, free_dummy);
 			continue ;
+		}
 		error = line_to_tokens(&info.tokens, &info.dummys, info.line);
 		free(info.line);
 		ft_lstclear(&info.dummys, free_dummy);
-		// if (check_token_error(info, error) & ERROR_OCCURED)
-		// {
-		// 	print(ft_itoa(error));
-		// 	continue ;
-		// }
 		if (error & ERROR_OCCURED)
 		{
 			check_token_error(info, error);
-			// print(ft_itoa(error));
-			// ft_lstclear(&info.tokens, free_token);
-
 			continue ;
-    }
+		}
 		create_argvs(argvs, info.tokens, &info.cmd, &info.type);
-		// if (info.tokens->content == 0)
-		// 	print("1");
-		// else
-		// {
-		// 	// t_list *t = info.tokens->content;
-		// 	// while (t)
-		// 	// {
-
-		// 	print(((t_token *)(info.tokens->content))->value);
-		// 	printf("%p\n", info.tokens->content);
-		// 	// }
-		// }
-		// ft_lstclear(&info.tokens, free_token);
 		print_argv(*argvs);
 		if (error == ERROR_NO_OCCURED)
 			break ;
