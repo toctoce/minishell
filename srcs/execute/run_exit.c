@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_exit.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/16 16:42:13 by dohyunki          #+#    #+#             */
+/*   Updated: 2023/08/16 16:47:00 by dohyunki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 static int	ft_atouc(char *str)
@@ -33,7 +45,6 @@ void	run_exit(char **cmd)
 {
 	int	exit_num;
 
-	// 확인 필요
 	if (cmd[1] && cmd[2])
 	{
 		print_error("exit", "too many arguments", FAIL);
@@ -46,6 +57,6 @@ void	run_exit(char **cmd)
 	if (g_info.pid == getpid())
 		printf("exit\n");
 	if (exit_num < 0)
-        print_error("exit", "numeric argument required", 255);
+		print_error("exit", "numeric argument required", 255);
 	exit(exit_num);
 }

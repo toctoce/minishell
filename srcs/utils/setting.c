@@ -6,13 +6,13 @@
 /*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 21:49:11 by youngkpa          #+#    #+#             */
-/*   Updated: 2023/08/15 22:52:45 by dohyunki         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:49:57 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void    set_echoctl(void)
+void	set_echoctl(void)
 {
 	struct termios	term;
 
@@ -21,7 +21,7 @@ void    set_echoctl(void)
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
 
-void    unset_echoctl(void)
+void	unset_echoctl(void)
 {
 	struct termios	term;
 
@@ -34,13 +34,11 @@ static void	signal_handler(int signo)
 {
 	if (signo == SIGINT)
 	{
-        // 버퍼의 문자를 ""로 대치함.
 		rl_replace_line("", 0);
 		ft_putstr_fd("\n", STDOUT_FILENO);
-        // 개행 후에 new line이라고 알림
 		rl_on_new_line();
 		rl_redisplay();
-		g_info.last_exit_status = 128 + signo; // $?를 위한 코드.
+		g_info.last_exit_status = 128 + signo;
 	}
 	else if (signo == SIGQUIT)
 	{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_cd.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/16 16:42:03 by dohyunki          #+#    #+#             */
+/*   Updated: 2023/08/16 16:46:17 by dohyunki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minishell.h"
 
 static void	update_env_pwds(char *cwd)
@@ -39,7 +51,8 @@ void	run_cd(char **cmd)
 	}
 	if (chdir(cmd[1]) != 0)
 	{
-		print_error(ft_str_double_join("cd", ": ", cmd[1]), strerror(errno), FAIL);
+		print_error(ft_str_double_join("cd", ": ", \
+					cmd[1]), strerror(errno), FAIL);
 		return ;
 	}
 	if (!getcwd(cwd, sizeof(cwd)))

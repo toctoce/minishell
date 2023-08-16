@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_execute.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youngkpa <youngkpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dohyunki <dohyunki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:24:34 by dohyunki          #+#    #+#             */
-/*   Updated: 2023/08/15 19:48:04 by youngkpa         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:44:52 by dohyunki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	set_pipes(int ***pipes, int cnt_pipe)
 	idx = 0;
 	while (idx < cnt_pipe)
 	{
-		if (pipe((*pipes)[idx]) < 0) // pipe로 부모 자식 프로세스간 통신
+		if (pipe((*pipes)[idx]) < 0)
 		{
 			print_error("pipe", strerror(errno), FAIL);
 			close_pipes(*pipes, idx);
